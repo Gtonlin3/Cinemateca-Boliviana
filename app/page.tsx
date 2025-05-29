@@ -1,9 +1,21 @@
 import Image from "next/image";
+import Header from "./components/componentes/Header";
 
 export default function Home() {
   return (
     <>
-    
-    </>
+    <div className="relative w-full h-screen">
+      <Image
+        src="/Portada-Karate.jpeg"
+        alt="Logo Cinemateca"
+        fill
+        className="object-cover"
+        priority
+      />
+      <div className="absolute top-0 left-0 w-full">
+        <Header />
+      </div>
+    </div>
+  </>
   );
 }

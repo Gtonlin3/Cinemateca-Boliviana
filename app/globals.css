@@ -1,0 +1,133 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*{
+    margin: 0;
+    padding: 0;
+
+}
+
+.barra-superior {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 16px 24px; 
+  background-color: rgba(28, 27, 41, 0.15); 
+}
+
+.logo-search{
+    display: flex;
+    gap: 20px; 
+}
+
+.lg-img-txt{
+    display: flex;
+    align-items: center;
+}
+
+.text-lg{
+    display: flex;
+    color: white;
+}
+
+.botones {
+  display: flex;
+  gap: 10px; 
+}
+
+.btn-registrarse {
+  background-color: #FF5733;
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 16px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.btn-login {
+  background-color: transparent;
+  color: #FF5733;
+  border: 2px solid #FF5733;
+  padding: 8px 16px;
+  border-radius: 16px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.navegacion {
+  display: flex;
+  gap: 45px;
+  font-size: 16px;
+  color: white;
+  position: relative;
+  z-index: 1;
+}
+
+.grupo {
+  position: relative;
+  display: inline-block;
+}
+
+.enlace-principal {
+  text-decoration: none;
+  color: white;
+  padding: 8px 0;
+  display: inline-block;
+}
+
+.enlace-principal:hover {
+  color: #FF5733;
+}
+
+.submenu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.25);
+  border: 1px solid #333;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
+  min-width: 160px;
+  z-index: 999;
+  pointer-events: auto;
+}
+
+.submenu a {
+  display: block;
+  padding: 10px 16px;
+  color: white;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.submenu a:hover {
+  color: #FF5733;
+  background-color: rgba(255, 87, 51, 0.1);
+}
+
+.grupo:hover .submenu {
+  display: block;
+}
+
+.infomovie{
+    color: white;
+    height: 800px;
+    width: 300px;
+    margin-left: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 15px;
+}
+
+.title-movie{
+    font-size: 40px;
+}
+
+.description-movie{
+    font-size: 18px;
+    text-align: justify;
+}
