@@ -11,3 +11,9 @@ const DescriptioMovie = () => {
 }
 
 export default DescriptioMovie
+
+
+// .description-movie{
+//     font-size: 18px;
+//     text-align: justify;
+// } 

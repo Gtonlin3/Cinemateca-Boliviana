@@ -11,3 +11,8 @@ const TitleMovie = () => {
 }
 
 export default TitleMovie
+
+
+// .title-movie{
+//     font-size: 40px;
+// }

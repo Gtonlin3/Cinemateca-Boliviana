@@ -8,18 +8,49 @@
 
 }
 
-.barra-superior {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  padding: 16px 24px; 
-  background-color: rgba(28, 27, 41, 0.15); 
+body{
+background-color: black;
 }
 
-.logo-search{
+.barra-superior {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 24px; 
+  background-color: rgba(34, 33, 33, 0.8);
+  margin: 12px;
+  border-radius: 12px;
+}
+
+@media (max-width: 768px) {
+    .barra-superior {
+        padding: 12px 16px;  /* Menor padding para que ocupe menos espacio */
+        justify-content: space-between;  /* Cambiar para que los íconos estén más cerca */
+    }
+
+    .barra-superior img {
+        width: 20px;  /* Reducir el tamaño de los íconos */
+        height: 20px;
+    }
+
+    /* Hacer que el logo sea más pequeño en dispositivos móviles */
+    .lg-img-txt img {
+        width: 80px;  /* Reducir el tamaño del logo */
+        height: auto;
+    }
+}
+
+.icon-contenedor{
+  display: flex;
+  justify-content: center;   /* Centrado horizontal */
+  align-items: center;       /* Centrado vertical */
+  height: 100%;              /* Asegúrate de que el contenedor tenga altura suficiente */
+}
+
+/* .logo-search{
     display: flex;
     gap: 20px; 
-}
+} */
 
 .lg-img-txt{
     display: flex;
@@ -34,6 +65,8 @@
 .botones {
   display: flex;
   gap: 10px; 
+  justify-content: center;
+  align-items: center;
 }
 
 .btn-registrarse {
@@ -70,64 +103,4 @@
   display: inline-block;
 }
 
-.enlace-principal {
-  text-decoration: none;
-  color: white;
-  padding: 8px 0;
-  display: inline-block;
-}
 
-.enlace-principal:hover {
-  color: #FF5733;
-}
-
-.submenu {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background-color: rgba(0, 0, 0, 0.25);
-  border: 1px solid #333;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-  border-radius: 4px;
-  min-width: 160px;
-  z-index: 999;
-  pointer-events: auto;
-}
-
-.submenu a {
-  display: block;
-  padding: 10px 16px;
-  color: white;
-  text-decoration: none;
-  white-space: nowrap;
-}
-
-.submenu a:hover {
-  color: #FF5733;
-  background-color: rgba(255, 87, 51, 0.1);
-}
-
-.grupo:hover .submenu {
-  display: block;
-}
-
-.infomovie{
-    color: white;
-    height: 800px;
-    width: 300px;
-    margin-left: 100px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 15px;
-}
-
-.title-movie{
-    font-size: 40px;
-}
-
-.description-movie{
-    font-size: 18px;
-    text-align: justify;
-}

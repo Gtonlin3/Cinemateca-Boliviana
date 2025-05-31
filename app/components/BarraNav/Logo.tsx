@@ -8,16 +8,12 @@ const Logo = () => {
     <div className="lg-img-txt">
 
       <Image 
-        src="/logo-cinemateca.png" 
-        alt="Logo Cinemateca" 
-        width={36} 
-        height={36} 
+        src="/logo-CM.svg" 
+        alt="LogoCinemateca" 
+        width={120} 
+        height={30} 
         priority
       />
-    <div>
-      <p className="text-lg">Cinemateca </p>
-      <p className="text-lg">Boliviana</p>
-    </div>
       
     </div>
     </>
