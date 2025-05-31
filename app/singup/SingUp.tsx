@@ -24,7 +24,7 @@ const SingUp = () => {
           alt="LogoCinemateca"
           width={160}
           height={100}
-          className="mx-auto mt-5 block"
+          className="mx-aauto mt-5 block"
         />
         <h3 className="titulo">Registrarse</h3>
         
@@ -33,7 +33,7 @@ const SingUp = () => {
             <h3 className="correo_o">Nombre</h3>
             <input
               type="email"
-              placeholder="email@domain.com"
+              placeholder="Alan Mamani Lopez"
               style={{
                 margin: "0px 0px 0px 0px",
                 height: "30px",
@@ -45,9 +45,9 @@ const SingUp = () => {
                 resize: "vertical",
               }}
             />
-            <h3 className="contra">Usuario</h3>
+            <h3 className="usuario">Usuario</h3>
             <input
-              placeholder="******"
+              placeholder="AML69"
               type="contraseña"
               style={{
                 margin: "0px 0px 0px 0px",
@@ -77,7 +77,7 @@ const SingUp = () => {
             />
             <h3 className="edad">Edad</h3>
             <input
-              placeholder="******"
+              placeholder="18"
               type="contraseña"
               style={{
                 margin: "0px 0px 0px 0px",
@@ -92,7 +92,7 @@ const SingUp = () => {
             />
             <h3 className="correo_o">Correo</h3>
             <input
-              placeholder="******"
+              placeholder="email@domain.com"
               type="contraseña"
               style={{
                 margin: "0px 0px 0px 0px",
@@ -120,7 +120,7 @@ const SingUp = () => {
                 resize: "vertical",
               }}
             />
-            <button className="btn-iniciar">
+            <button className="btn-registrarse">
             <p className="sesion">Registrarse</p>
           </button>
           </div>

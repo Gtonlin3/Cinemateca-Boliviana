@@ -9,7 +9,6 @@ const Login = () => {
       <div className="barra-superior-black">
         <BackButton />
       </div>
-
       <div className="Login">
         <Image
           src="/loogo_cm.svg"
