@@ -103,4 +103,54 @@ background-color: black;
   display: inline-block;
 }
 
+.CarNorticias {
+  display: flex;
+  flex-direction: row;            /* Disposición horizontal de los items */
+  justify-content: flex-start;    /* Alineación de los items al principio */
+  align-items: center;            /* Alineación vertical centrada */
+  margin: 0 15px;
+  flex-wrap: nowrap;              /* Evita que las imágenes se pasen a la siguiente línea */
+  gap: 25px;                      /* Espacio entre las imágenes */
+  overflow-x: auto;               /* Habilita el scroll horizontal */
+  padding-bottom: 10px;           /* Espacio extra para que no se pegue el scroll al fondo */
+}
+
+.txt-car{
+  display: flex;
+  margin: 0 25px;
+  justify-content: space-between;
+    align-items: center;
+}
+
+.txt-title{
+  color: white;
+}
+
+.txt-vertodo{
+  color: rgb(163, 24, 24);
+}
+
+.CarCartelera {
+  display: flex;
+  flex-direction: row;            /* Disposición horizontal de los items */
+  justify-content: flex-start;    /* Alineación de los items al principio */
+  align-items: center;            /* Alineación vertical centrada */
+  margin: 15px;
+  flex-wrap: nowrap;              /* Evita que las imágenes se pasen a la siguiente línea */
+  gap: 25px;                      /* Espacio entre las imágenes */
+  overflow-x: auto;               /* Habilita el scroll horizontal */
+  padding-bottom: 10px;           /* Espacio extra para que no se pegue el scroll al fondo */
+}
+
+.CarRecomen {
+  display: flex;
+  flex-direction: row;            /* Disposición horizontal de los items */
+  justify-content: flex-start;    /* Alineación de los items al principio */
+  align-items: center;            /* Alineación vertical centrada */
+  margin: 15px;
+  flex-wrap: nowrap;              /* Evita que las imágenes se pasen a la siguiente línea */
+  gap: 25px;                      /* Espacio entre las imágenes */
+  overflow-x: auto;               /* Habilita el scroll horizontal */
+  padding-bottom: 10px; 
+}
 

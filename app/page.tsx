@@ -1,5 +1,8 @@
 import Image from "next/image";
 import Header from "./components/BarraNav/Header";
+import CarNorticias from "./components/carruseles/CarNorticias";
+import CarCartelera from "./components/carruseles/CarCartelera";
+import CarRecomen from "./components/carruseles/CarRecomen";
 
 export default function Home() {
   return (
@@ -13,21 +16,11 @@ export default function Home() {
         className="object-cover"
         priority
       /> */}
-      <div className="absolute top-0 left-0 w-full">
         <Header />
-      </div>
-
-      <div className="eventos">
-
-        <Image 
-          src="/portada-cm.svg"
-          alt="LogoCinemateca" 
-          width={374} 
-          height={354} 
-          priority
-        />
-
-      </div>
+        <CarNorticias />
+        <CarCartelera />
+        <CarRecomen/>
+     
 
     </div>
   </>
