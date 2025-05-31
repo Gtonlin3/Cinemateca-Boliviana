@@ -30,10 +30,70 @@ const SingUp = () => {
         
         <div className="correo">
           <div className="demas">
-            <h3 className="correo_o">Ingrese su correo</h3>
+            <h3 className="correo_o">Nombre</h3>
             <input
               type="email"
               placeholder="email@domain.com"
+              style={{
+                margin: "0px 0px 0px 0px",
+                height: "30px",
+                width: "340px",
+                padding: "10px",
+                fontSize: "16px",
+                borderRadius: "10px",
+                border: "1px solid #ccc",
+                resize: "vertical",
+              }}
+            />
+            <h3 className="contra">Usuario</h3>
+            <input
+              placeholder="******"
+              type="contraseña"
+              style={{
+                margin: "0px 0px 0px 0px",
+                height: "30px",
+                width: "340px",
+                padding: "10px",
+                fontSize: "16px",
+                borderRadius: "10px",
+                border: "1px solid #ccc",
+                resize: "vertical",
+              }}
+            />
+            <h3 className="celular">Celular</h3>
+            <input
+              placeholder="******"
+              type="contraseña"
+              style={{
+                margin: "0px 0px 0px 0px",
+                height: "30px",
+                width: "340px",
+                padding: "10px",
+                fontSize: "16px",
+                borderRadius: "10px",
+                border: "1px solid #ccc",
+                resize: "vertical",
+              }}
+            />
+            <h3 className="edad">Edad</h3>
+            <input
+              placeholder="******"
+              type="contraseña"
+              style={{
+                margin: "0px 0px 0px 0px",
+                height: "30px",
+                width: "340px",
+                padding: "10px",
+                fontSize: "16px",
+                borderRadius: "10px",
+                border: "1px solid #ccc",
+                resize: "vertical",
+              }}
+            />
+            <h3 className="correo_o">Correo</h3>
+            <input
+              placeholder="******"
+              type="contraseña"
               style={{
                 margin: "0px 0px 0px 0px",
                 height: "30px",
@@ -60,13 +120,14 @@ const SingUp = () => {
                 resize: "vertical",
               }}
             />
+            <button className="btn-iniciar">
+            <p className="sesion">Registrarse</p>
+          </button>
           </div>
         </div>
        
         <div>
-          <button className="btn-iniciar">
-            <p className="sesion">Registrarse</p>
-          </button>
+          
         </div>
       </div>
         </>
