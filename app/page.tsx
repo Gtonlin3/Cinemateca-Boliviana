@@ -2,7 +2,6 @@ import Image from "next/image";
 import Header from "./components/BarraNav/Header";
 import CarNorticias from "./components/carruseles/CarNorticias";
 import CarCartelera from "./components/carruseles/CarCartelera";
-import CarRecomen from "./components/carruseles/CarRecomen";
 
 export default function Home() {
   return (
@@ -19,7 +18,6 @@ export default function Home() {
         <Header />
         <CarNorticias />
         <CarCartelera />
-        <CarRecomen/>
      
 
     </div>

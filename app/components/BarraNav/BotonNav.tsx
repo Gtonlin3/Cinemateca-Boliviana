@@ -1,24 +1,25 @@
-import React from 'react'
+'use client'
+
+import { useState } from 'react'
 import Image from 'next/image'
-import Link from 'next/link'
+import MenuLateral from './MenuLateral'
 
 const BotonNav = () => {
-  return (
-        <>
-        <Link href="/##">
-          <div className="icon-contenedor">
+  const [mostrarMenu, setMostrarMenu] = useState(false)
 
-          <Image
-            src="/ico-nav.svg" 
-            alt="LogoNav" 
-            width={24} 
-            height={24}
-            priority
-          />
-          
-          </div>
-        </Link>
-     
+  return (
+    <>
+      <div className="icon-contenedor" onClick={() => setMostrarMenu(!mostrarMenu)}>
+        <Image
+          src="/ico-menu.svg"
+          alt="LogoNav"
+          width={24}
+          height={24}
+          priority
+        />
+      </div>
+
+      {mostrarMenu && <MenuLateral onClose={() => setMostrarMenu(false)} />}
     </>
   )
 }

@@ -9,7 +9,8 @@
 }
 
 body{
-background-color: black;
+  background-color: #8888;
+  font-family: 'Lato', sans-serif;
 }
 
 .barra-superior {
@@ -17,7 +18,9 @@ background-color: black;
   justify-content: space-between;
   align-items: center;
   padding: 16px 24px; 
-  background-color: rgba(34, 33, 33, 0.8);
+  background-color: rgba(34, 33, 33, 0.8); 
+  /* background-color: rgba(176, 170, 170, 0.19);  */
+
   margin: 12px;
   border-radius: 12px;
 }
@@ -112,18 +115,20 @@ background-color: black;
   flex-wrap: nowrap;              /* Evita que las imágenes se pasen a la siguiente línea */
   gap: 25px;                      /* Espacio entre las imágenes */
   overflow-x: auto;               /* Habilita el scroll horizontal */
-  padding-bottom: 10px;           /* Espacio extra para que no se pegue el scroll al fondo */
+  scrollbar-width: none;      /* Firefox */
+  -ms-overflow-style: none;   /* IE y Edge */
 }
 
 .txt-car{
   display: flex;
   margin: 0 25px;
   justify-content: space-between;
-    align-items: center;
+  align-items: center;
 }
 
 .txt-title{
   color: white;
+  margin: 0 0 5px 0;
 }
 
 .txt-vertodo{
@@ -131,26 +136,227 @@ background-color: black;
 }
 
 .CarCartelera {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(97px, 1fr));
+  gap: 30px 16px; /* 30px vertical, 16px horizontal */
+  padding: 10px 18px;
+  justify-content: center; /* Centra horizontalmente el grid */
+}
+
+
+.CarCartelera::-webkit-scrollbar {
+  display: none;
+}
+
+.card-pelicula {
+  background: rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  width: 97px;
+  height: 175px;
+  color: white;
+  text-align: center;
+  flex-shrink: 0;
+  padding: 6px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
   display: flex;
-  flex-direction: row;            /* Disposición horizontal de los items */
-  justify-content: flex-start;    /* Alineación de los items al principio */
-  align-items: center;            /* Alineación vertical centrada */
-  margin: 15px;
-  flex-wrap: nowrap;              /* Evita que las imágenes se pasen a la siguiente línea */
-  gap: 25px;                      /* Espacio entre las imágenes */
-  overflow-x: auto;               /* Habilita el scroll horizontal */
-  padding-bottom: 10px;           /* Espacio extra para que no se pegue el scroll al fondo */
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.img-pelicula {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 10px;
 }
 
 .CarRecomen {
   display: flex;
-  flex-direction: row;            /* Disposición horizontal de los items */
-  justify-content: flex-start;    /* Alineación de los items al principio */
-  align-items: center;            /* Alineación vertical centrada */
-  margin: 15px;
-  flex-wrap: nowrap;              /* Evita que las imágenes se pasen a la siguiente línea */
-  gap: 25px;                      /* Espacio entre las imágenes */
-  overflow-x: auto;               /* Habilita el scroll horizontal */
-  padding-bottom: 10px; 
+  flex-direction: row;
+  overflow-x: auto;
+  gap: 20px;
+  padding: 10px 15px;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
+.CarRecomen::-webkit-scrollbar {
+  display: none;
+}
+
+.card-pelicula {
+  background: rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  width: 97px;
+  height: 175px;
+  color: white;
+  text-align: center;
+  flex-shrink: 0;
+  padding: 6px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.img-pelicula {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.menu-lateral {
+  position: fixed;
+  top: 10px; /* Espacio desde arriba */
+  left: 12px; /* Espacio desde el lado izquierdo */
+  width: 200px;
+  height: calc(96vh - 30px); /* Ajuste por márgenes superiores e inferiores */
+  background-color: rgba(34, 33, 33, 0.8);
+  color: white;
+  z-index: 999;
+  padding: 20px 20px 20px 30px; /* Espacio interno */
+  border-radius: 12px;
+  transition: transform 0.3s ease;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.3);
+}
+
+.menu-header {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.btn-cerrar {
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.menu-items {
+  list-style: none;
+  padding: 0;
+  margin-top: 22px;
+}
+
+.menu-items li {
+  margin: 16px 0;
+}
+
+.menu-items a {
+  text-decoration: none;
+  color: white;
+  font-size: 18px;
+}
+.titulo{
+  color: white;
+}
+.demas{
+  display: flex;
+  flex-direction: column;
+  margin: 0px 0px 20px 0px;
+}
+
+.correo{
+  display: flex;
+  flex-direction: column;
+  height: 240px;
+  width: 90%;
+  align-items: center;
+}
+.correo_o{
+  color: white;
+  margin: 20px 20px 20px 10px;
+  
+}
+.contra{
+  color: white;
+  margin: 20px 20px 20px 10px;
+}
+.or{
+  display: flex;
+  margin: 10px 30px 10px 30px;
+  width: 350px;
+  justify-content: center;
+  align-items: center;
+}
+.o{
+  color: white;
+  margin: 0px 10px 0px 10px;
+}
+.primer_rec{
+  background-color: white;
+  width: 100%;
+  height: 1px;
+  margin: 10px 0px 10px 0px;
+}
+.segundo_rec{
+  background-color: white;
+  width: 100%;
+  height: 1px;
+  margin: 10px 0px 10px 0px;
+}
+.otras_opciones{
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  margin: 10px 0px 10px 0px;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+.btn-google{
+  display: flex;
+  width: 350px;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  border-radius: 20px;
+  
+}
+.mx-auto{
+  margin: 0px;
+}
+
+.notifications{
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  color : white;
+  margin: 25px 10px 10px 30px;
+  gap : 10px;
+}
+
+.barra-superior-black {
+  display: flex;
+  width: 85%;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 24px; 
+  /* background-color: rgba(34, 33, 33, 0.8);  */
+  background-color: black; 
+  margin: 12px;
+  border-radius: 12px;
+}
+@media (max-width: 768px) {
+    .barra-superior-black {
+        padding: 12px 16px;  /* Menor padding para que ocupe menos espacio */
+        justify-content: space-between;  /* Cambiar para que los íconos estén más cerca */
+    }
+
+    .barra-superior-black img {
+        width: 20px;  /* Reducir el tamaño de los íconos */
+        height: 20px;
+    }
+}
+
+.Login{
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;  
+  
+  justify-content: center;
+  height: 80vh;  
+}

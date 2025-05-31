@@ -1,6 +1,33 @@
 import React from 'react'
-import Image from 'next/image'
 import Link from 'next/link'
+
+const recomendaciones = [
+  {
+    id: 1,
+    titulo: 'La Memoria Infinita',
+    imagen: '/portada1.jpg',
+    genero: 'Documental',
+  },
+  {
+    id: 2,
+    titulo: 'Los Reyes del Mundo',
+    imagen: '/portada2.jpg',
+    genero: 'Drama',
+  },
+  {
+    id: 3,
+    titulo: 'Utama',
+    imagen: '/portada3.jpg',
+    genero: 'Ficción',
+  },
+  {
+    id: 4,
+    titulo: 'La Ley de la Luna',
+    imagen: '/portada4.jpg',
+    genero: 'Drama',
+  }
+];
+
 
 const CarRecomen = () => {
   return (
@@ -10,32 +37,16 @@ const CarRecomen = () => {
         <Link href="### VER TODO ###">
             <p className='txt-vertodo'>Ver todo</p>
         </Link>
-        
     </div>
-    <div className='CarRecomen'>
-        <Image 
-          src="/portada-cm.svg"
-          alt="LogoCinemateca" 
-          width={380} 
-          height= {350}
-          priority
-        />
 
-        <Image 
-          src="/portada-cm.svg"
-          alt="LogoCinemateca" 
-          width={380} 
-          height= {350}
-          priority
-        />
-
-        <Image 
-          src="/portada-cm.svg"
-          alt="LogoCinemateca" 
-          width={380} 
-          height= {350}
-          priority
-        />
+    <div className="CarRecomen">
+        {recomendaciones.map((item) => (
+          <div key={item.id} className="card-pelicula">
+            <img src={item.imagen} alt={item.titulo} className="img-pelicula" />
+            <h3>{item.titulo}</h3>
+            <p>{item.genero}</p>
+          </div>
+        ))}
     </div>
     </>
   )

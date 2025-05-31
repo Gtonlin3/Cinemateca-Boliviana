@@ -1,7 +1,7 @@
 import React from 'react'
 import Logo from './Logo'
-import BotonLogin from './BotonLogin'
 import BotonNav from './BotonNav'
+import Buttons from './Buttons'
 
 const Header = () => {
   return (
@@ -9,7 +9,7 @@ const Header = () => {
         <div className="barra-superior">
             <BotonNav/>
             <Logo/>
-            <BotonLogin/>
+            <Buttons/>
         </div>
     </>
   )
