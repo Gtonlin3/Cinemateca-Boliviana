@@ -79,7 +79,7 @@ const Login = () => {
           </button>
           <button className="btn-google">
             <Image
-              src="/logo-google.png"
+              src="/logo-fb.jpg"
               alt="Logogoogle"
               width={20}
               height={20}
@@ -88,11 +88,16 @@ const Login = () => {
             Continue with Facebook
           </button>
         </div>
-        <div>
+        <div className="aun">
             <p className="todavia">Todavia no te creaste una cuenta?</p>
-            <Link href="#">
+            <Link href="/singup">
         <p className='txt-vertodo'>presione aqui</p>
             </Link>
+        </div>
+        <div>
+          <button className="btn-iniciar">
+            <p className="sesion">INICIAR SESION</p>
+          </button>
         </div>
       </div>
     </>

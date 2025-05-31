@@ -1,5 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
+import MovieCard from '../MovieCard';
 
 const peliculas = [
   {
@@ -28,31 +29,31 @@ const peliculas = [
   },
   {
     id: 5,
-    titulo: 'La Ley de la Luna',
+    titulo: 'Apocalipto',
     imagen: '/portada5.jpg',
     genero: 'Drama',
   },
   { 
     id: 6,
-    titulo: 'La Ley de la Luna',
+    titulo: 'bicibleta de los huanca',
     imagen: '/portada6.jpg',
     genero: 'Drama',  
   },
   {
     id: 7,
-    titulo: 'La Ley de la Luna',
+    titulo: 'two men an  half',
     imagen: '/portada7.jpg',
     genero: 'Drama',
   },
   {
     id: 8,
-    titulo: 'La Ley de la Luna',
+    titulo: 'tony',
     imagen: '/portada8.jpg',
     genero: 'Drama',
   },
   {
     id: 9,
-    titulo: 'La Ley de la Luna',
+    titulo: '2012',
     imagen: '/portada9.jpg',  
     genero: 'Drama',
   }
@@ -69,14 +70,16 @@ const CarCartelera = () => {
     </div>
     
     <div className="CarCartelera">
-        {peliculas.map((pelicula) => (
-          <div key={pelicula.id} className="card-pelicula">
-            <img src={pelicula.imagen} alt={pelicula.titulo} className="img-pelicula" />
-            <h3>{pelicula.titulo}</h3>
-            <p>{pelicula.genero}</p>
-          </div>
+        {peliculas.map((peliculas) => (
+          <MovieCard
+          key={peliculas.id}
+          title={peliculas.titulo}
+          image={peliculas.imagen}
+          genre={peliculas.genero}
+          
+          />
         ))}
-    </div>
+        </div>
     </>
   )
 }
