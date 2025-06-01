@@ -62,12 +62,7 @@ const peliculas = [
 const CarCartelera = () => {
   return (
     <>
-    <div className='txt-car'>
-      <p className='txt-title'>CARTELERA</p>
-      <Link href="#">
-        <p className='txt-vertodo'>Ver todo</p>
-      </Link>
-    </div>
+    
     
     <div className="CarCartelera">
         {peliculas.map((peliculas) => (

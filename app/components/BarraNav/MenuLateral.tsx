@@ -10,12 +10,12 @@ const MenuLateral = ({ onClose }: { onClose: () => void }) => {
         <button className="btn-cerrar" onClick={onClose}>✕</button>
       </div>
       <ul className="menu-items">
-        <li><Link href="/">Inicio</Link></li>
+        {/* <li><Link href="/">Inicio</Link></li> */}
         <li><Link href="/cartelera">Cartelera</Link></li>
-        <li><Link href="/Novedades">Novedades</Link></li>
+        <li><Link href="/novedades">Novedades</Link></li>
         <li><Link href="/streaming">CinematecaPlay</Link></li>
         <li><Link href="/candybar">Candy Bar</Link></li>
-        <li><Link href="/Contacto">Contacto</Link></li>
+        <li><Link href="/contacto">Contacto</Link></li>
       </ul>
     </div>
   );
