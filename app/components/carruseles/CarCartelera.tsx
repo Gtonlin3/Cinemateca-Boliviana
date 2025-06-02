@@ -63,8 +63,7 @@ const CarCartelera = () => {
   return (
     <>
     
-    
-    <div className="CarCartelera">
+    <div className="CardMovie">
         {peliculas.map((peliculas) => (
           <MovieCard
           key={peliculas.id}
