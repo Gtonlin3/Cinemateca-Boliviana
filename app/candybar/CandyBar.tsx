@@ -9,9 +9,20 @@ interface ComboEspecial {
   Stock: number
   Precio: string
 }
+interface productosSnack {
+  id: string
+  Nombre: string
+  Seccion: string
+  imagen: string
+  Stock: number
+  Precio: string
+}
+
 
 const CandyBar = () => {
   const [combos, setCombos] = useState<ComboEspecial[]>([])
+  const [snacks, setSnacks] = useState<productosSnack[]>([])
+
 
   useEffect(() => {
     const fetchCombos = async () => {
@@ -26,6 +37,9 @@ const CandyBar = () => {
 
     fetchCombos()
   }, [])
+
+
+  
 
   // 🔥 Función para comprar y reducir el stock en MockAPI
   const comprarProducto = async (id: string, stockActual: number) => {
@@ -76,7 +90,10 @@ const CandyBar = () => {
         </div>
 
         {/* Subtítulos adicionales */}
-        <h3 className='subtitulo'>Bebidas</h3>
+        {/* Sección de Bebidas */}
+<h3 className='subtitulo'>Bebidas</h3>
+
+
         <h3 className='subtitulo'>Dulces</h3>
         <h3 className='subtitulo'>Comida Rápida</h3>
         <h3 className='subtitulo'>Snacks</h3>
