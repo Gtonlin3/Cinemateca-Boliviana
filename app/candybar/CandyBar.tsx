@@ -1,52 +1,87 @@
 'use client'
 import React, { useEffect, useState } from 'react'
 
-interface ProductoCandyBar {
+interface ComboEspecial {
   id: string
-  name: string
-  tipo: string
+  Nombre: string
   imagen: string
-  descripcion: string
-  stock: number
-  precio: string
+  Descripcion: string
+  Stock: number
+  Precio: string
 }
 
 const CandyBar = () => {
-  const [productos, setProductos] = useState<ProductoCandyBar[]>([])
+  const [combos, setCombos] = useState<ComboEspecial[]>([])
 
   useEffect(() => {
-    const fetchProductos = async () => {
-      const res = await fetch('https://683b6a5828a0b0f2fdc49f95.mockapi.io/CandyBar')
-      const data = await res.json()
-      setProductos(data)
+    const fetchCombos = async () => {
+      try {
+        const res = await fetch('https://68423e50e1347494c31c37f5.mockapi.io/CombosEspeciales')
+        const data = await res.json()
+        setCombos(data.slice(0, 5)) // Tomamos solo los primeros 5 combos
+      } catch (error) {
+        console.error('Error al cargar los combos:', error)
+      }
     }
 
-    fetchProductos()
+    fetchCombos()
   }, [])
+
+  // 🔥 Función para comprar y reducir el stock en MockAPI
+  const comprarProducto = async (id: string, stockActual: number) => {
+    if (stockActual > 0) {
+      try {
+        const nuevoStock = stockActual - 1
+        await fetch(`https://68423e50e1347494c31c37f5.mockapi.io/CombosEspeciales/${id}`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ Stock: nuevoStock })
+        })
+
+        // Actualizar el estado para reflejar el cambio sin recargar la página
+        setCombos(combos.map(combo => 
+          combo.id === id ? { ...combo, Stock: nuevoStock } : combo
+        ))
+      } catch (error) {
+        console.error('Error al actualizar el stock:', error)
+      }
+    }
+  }
 
   return (
     <>
-    <div className='margin'>
+      <div className='margin'>
+        {/* Título principal centrado */}
+        <h2 className='titulo' style={{ textAlign: 'center' }}>Candy Bar CINEMATECA BOLIVIANA</h2>
 
-  <h2 className='titulo' >MENU CANDY BAR</h2>
-    <div className="menu">
-      <div className="productos-grid">
-        {productos.map(producto => (
-          <div key={producto.id} className="producto-card">
-            <img src={producto.imagen} alt={producto.name} />
-            <h3>{producto.name}</h3>
-            <p>{producto.descripcion}</p>
-            <p><strong>Tipo:</strong> {producto.tipo}</p>
-            <p><strong>Precio:</strong> Bs{producto.precio}</p>
-            <p><strong>Stock:</strong> {producto.stock}</p>
+        {/* Subtítulo normal */}
+        <h3 className='subtitulo'>COMBOS ESPECIALES</h3>
+
+        {/* Sección de Combos Especiales */}
+        <div className="menu">
+          <div className="productos-grid">
+            {combos.map(combo => (
+              <div key={combo.id} className="producto-card">
+                <img src={combo.imagen} alt={combo.Nombre} />
+                <h3>{combo.Nombre}</h3>
+                <p>{combo.Descripcion}</p>
+                <p><strong>Stock:</strong> {combo.Stock}</p>
+                <p><strong>Precio:</strong> Bs{combo.Precio}</p>
+                <button onClick={() => comprarProducto(combo.id, combo.Stock)}>
+                  Comprar
+                </button>
+              </div>
+            ))}
           </div>
-        ))}
+        </div>
+
+        {/* Subtítulos adicionales */}
+        <h3 className='subtitulo'>Bebidas</h3>
+        <h3 className='subtitulo'>Dulces</h3>
+        <h3 className='subtitulo'>Comida Rápida</h3>
+        <h3 className='subtitulo'>Snacks</h3>
       </div>
-    </div>
-    </div>
-
-
-     </>
+    </>
   )
 }
 
