@@ -25,7 +25,7 @@ const CandyBar = () => {
   }, [])
 
   return (
-    <div className="candy-bar">
+    <div className="menu">
       <h2>MENU CANDY BAR</h2>
       <div className="productos-grid">
         {productos.map(producto => (

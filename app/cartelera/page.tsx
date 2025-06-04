@@ -8,8 +8,8 @@ const page = () => {
  <div className="barra-superior-black">
   <BackButton />
  </div>
-
-<CarCartelera />
+    <h2 className="titulo">Cartelera</h2>
+  <CarCartelera />
 
 </>
   )

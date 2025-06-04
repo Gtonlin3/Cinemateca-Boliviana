@@ -249,7 +249,9 @@ a {
   font-size: 18px;
 }
 .titulo{
+  padding:10px  2rem;
   color: white;
+
 }
 .demas{
   display: flex;
@@ -405,7 +407,7 @@ a {
 }
 
 
-.candy-bar {
+.menu {
   padding: 2rem;
   color: white;
 }
@@ -631,6 +633,34 @@ a {
   color: #ccc;
 }
 
+.novedades {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 10px 0px 10px 0px;
+}
 
+.img-novedades {
+  width: 300px;
+  height: 300px;
+  border-radius: 20px;
+}
 
+.texto-novedades {
+  color: white;
+  font-size: 20px;
+  margin: 10px 10% ;
+  text-align: justify;
+}
 
+.tablas-novedades{
+
+  display: flex;
+  flex-direction:row;
+  align-items: center;
+  justify-content: center;  
+  margin: 10px 0px 10px 0px;
+  gap : 10px;
+
+}

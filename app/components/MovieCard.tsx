@@ -9,7 +9,9 @@ interface Props {
 
 const MovieCard = ({ title, image, genre }: Props) => {
   return (
-    <Link href={`/movies/${title}`}>
+    <>
+    
+     <Link href={`/movies/${title}`}>
       <div className='card-img-title'>
 
         <div className='card-pelicula'>
@@ -20,6 +22,9 @@ const MovieCard = ({ title, image, genre }: Props) => {
 
     </div>      
     </Link>
+    
+    </>
+   
   )
 }
 
