@@ -70,7 +70,6 @@ const Login = () => {
         </div>
         <div className="otras_opciones">
           
-<<<<<<< Updated upstream
 <button onClick={() => signIn('google')} className="btn-google flex items-center gap-2 px-4 py-2 border rounded bg-white shadow">
   <Image
     src="/logo-google.png"
@@ -80,17 +79,6 @@ const Login = () => {
   />
   <span>Continuar con Google</span>
 </button>
-=======
-    <button onClick={() => signIn('google')} className="btn-google flex items-center gap-2 px-4 py-2 border rounded bg-white shadow">
-      <Image
-        src="/logo-google.png"
-        alt="Logogoogle"
-        width={20}
-        height={20}
-      />
-      <span>Continuar con Google</span>
-    </button>
->>>>>>> Stashed changes
 
          {/* <button className="btn-google">
             <Image

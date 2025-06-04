@@ -19,9 +19,9 @@ body{
   justify-content: space-between;
   align-items: center;
   padding: 16px 24px; 
-  background-color: rgba(34, 33, 33, 0.8); 
+  /* background-color: rgba(34, 33, 33, 0.8);  */
   /* background-color: rgba(176, 170, 170, 0.19);  */
-
+  background-color: black;
   margin: 12px;
   border-radius: 12px;
 }
@@ -210,7 +210,7 @@ a {
   top: 10px; /* Espacio desde arriba */
   left: 12px; /* Espacio desde el lado izquierdo */
   width: 200px;
-  height: calc(96vh - 30px); /* Ajuste por márgenes superiores e inferiores */
+  height: calc(96vh - -8px); /* Ajuste por márgenes superiores e inferiores */
   background-color: rgba(34, 33, 33, 0.8);
   color: white;
   z-index: 999;
@@ -249,7 +249,7 @@ a {
   font-size: 18px;
 }
 .titulo{
-  padding:10px  2rem;
+  padding: 0px 0px 10px 15px;
   color: white;
 
 }
@@ -300,7 +300,7 @@ a {
 }
 .primer_rec{
   background-color: white;
-  width: 90%;
+  width: 100%;
   height: 1px;
   margin: 10px 0px 10px 0px;
 }
@@ -367,12 +367,12 @@ a {
   margin: 5px;
 }
 
-.notifications{
+.margin{
   display: flex;
   flex-direction: column;
   height: 100vh;
   color : white;
-  margin: 25px 10px 10px 30px;
+  margin: 0px 30px 20px 30px;
   gap : 10px;
 }
 
@@ -408,7 +408,6 @@ a {
 
 
 .menu {
-  padding: 2rem;
   color: white;
 }
 
@@ -475,7 +474,11 @@ a {
   font-weight: bold;
   width: 1050px;
   text-align: center;
-
+}
+.opciones{
+  color: white;
+  font-weight: bold;
+  margin: 0px 5px 0px 5px;
 }
 .primer_rect{
   background-color: white;
@@ -506,60 +509,32 @@ a {
   display: flex;
   width: 100%;
   justify-content: center;
-  margin: 0px 0px 20px 0px;
+  gap: 10px;
 }
-.btn-genero{
+.btn-opc{
   display: flex;
-  width: 100px;
+  width: 120px;
   align-items: center;
   justify-content: center;
-  height: 50px;
+  height: 40px;
   border-radius: 20px;
   background-color: #FF5733;
-  margin: 0px 10px 0px 10px;
 }
-.btn-anio{
-  display: flex;
-  width: 100px;
-  align-items: center;
-  justify-content: center;
-  height: 50px;
-  border-radius: 20px;
-  background-color: #FF5733;
-  margin: 0px 10px 0px 10px;
-}
-.btn-calidad{
-  display: flex;
-  width: 100px;
-  align-items: center;
-  justify-content: center;
-  height: 50px;
-  border-radius: 20px;
-  background-color: #FF5733;
-  margin: 0px 10px 0px 10px;
-}
-.btn-popularidad{
-  display: flex;
-  width: 100px;
-  align-items: center;
-  justify-content: center;
-  height: 50px;
-  border-radius: 20px;
-  background-color: #FF5733;
-  margin: 0px 10px 0px 10px;
-  
-}
-.titiloo{
+
+.titulo-streaming{
   display: flex;
   width: 100%;
   align-items: center;
+  margin: 15px -10px;
 }
+
 .rect_vert{
   background-color: #FF5733;
   width: 2px;
   height: 30px;
   margin: 0px 10px 0px 10px;
 }
+
 .reciente{
   display: flex;
   color: white;
@@ -624,10 +599,9 @@ a {
   display: flex;
   gap: 10px;
   align-items: center;
-  margin: 0px 20px 20px 0px;
+  margin: 20px 0px;
 }
 .texto{
-  margin: 0px 20px 0px 0px;
   text-align: justify;
   opacity: 0.6;
   color: #ccc;
@@ -647,10 +621,20 @@ a {
   border-radius: 20px;
 }
 
+.titulo-novedades{
+  color: white;
+  font-size: 20px;
+  margin: 15px 10px ;
+  text-align: justify;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
 .texto-novedades {
   color: white;
   font-size: 20px;
-  margin: 10px 10% ;
+  margin: 0px 2% ;
   text-align: justify;
 }
 
@@ -663,4 +647,7 @@ a {
   margin: 10px 0px 10px 0px;
   gap : 10px;
 
+}
+.caja-notificaiones{
+  margin: 10px 20px 10px 20px;
 }

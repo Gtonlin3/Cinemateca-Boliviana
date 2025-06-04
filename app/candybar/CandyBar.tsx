@@ -25,8 +25,11 @@ const CandyBar = () => {
   }, [])
 
   return (
+    <>
+    <div className='margin'>
+
+  <h2 className='titulo' >MENU CANDY BAR</h2>
     <div className="menu">
-      <h2>MENU CANDY BAR</h2>
       <div className="productos-grid">
         {productos.map(producto => (
           <div key={producto.id} className="producto-card">
@@ -40,6 +43,10 @@ const CandyBar = () => {
         ))}
       </div>
     </div>
+    </div>
+
+
+     </>
   )
 }
 

@@ -6,6 +6,7 @@ import Inicio from './Inicio'
 import Estrenos from './Estrenos'
 import Peliculas from './Peliculas'
 import Series from './Series'
+import Image from 'next/image'
 
 const Streaming = () => {
   const [activeTab, setActiveTab] = useState('INICIO')
@@ -47,7 +48,21 @@ const Streaming = () => {
     <>
       <div className="barra-superior">
         <BackButton />
-        <Logo /> {/* cambia logo de cinemateca */}
+        
+        <div className="lg-img-txt">
+        
+              <Image 
+                src="/logo-play.svg" 
+                alt="LogoCinemateca" 
+                width={190} 
+                height={30} 
+                priority
+              />
+              
+            </div>
+
+
+
       </div>
 
       <nav className="barra-navegacion">

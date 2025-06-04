@@ -12,12 +12,12 @@ const Notification = () => {
             <Logo/>      
         </div>
 
-        <div className='notifications'>
+        <div className='margin'>
             <div>
-               <h3>Notificaciones</h3> 
+               <h2 className='titulo' >Notificaciones</h2> 
             </div>
-            <div>
-                <p className=''>Recordatorio</p>
+            <div className='caja-notificaiones'>
+                <p>Recordatorio</p>
                 <div className="primer_rec"></div>
                 <div className='primero'>
                     <Image 

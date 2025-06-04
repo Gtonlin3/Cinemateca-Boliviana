@@ -30,13 +30,13 @@ const Peliculas = () => {
     <div className="encabezado">
         <div className='ult'> 
           <div className="primer_rect"></div>
-          <p className="ultimas">Ultimas peliculas agregadas</p>
+          <p className="ultimas">Ultimas Peliculas Agregadas</p>
           <div className="segundo_rect"></div>
         </div>
         
         <div className='btns'>
-            <button className="btn-genero">
-              <p className="genero">Genero</p>
+            <button className="btn-opc">
+              <p className="opciones">Genero</p>
               <Image
                         src="/ico-menu.svg"
                         alt="LogoNav"
@@ -45,8 +45,8 @@ const Peliculas = () => {
                         priority
                       /> 
             </button>
-            <button className="btn-anio">
-              <p className="anio">Año</p> 
+            <button className="btn-opc">
+              <p className="opciones">Año</p> 
                <Image
                         src="/ico-menu.svg"
                         alt="LogoNav"
@@ -55,8 +55,8 @@ const Peliculas = () => {
                         priority
                       /> 
             </button>
-            <button className="btn-calidad">
-              <p className="calidad">Calidad</p>  
+            <button className="btn-opc">
+              <p className="opciones">Calidad</p>  
                <Image
                         src="/ico-menu.svg"
                         alt="LogoNav"
@@ -65,8 +65,8 @@ const Peliculas = () => {
                         priority
                       />
             </button>
-            <button className="btn-popularidad">
-              <p className="popularidad">Popularidad</p>
+            <button className="btn-opc">
+              <p className="opciones">Popularidad</p>
                <Image
                         src="/ico-menu.svg"
                         alt="LogoNav"
@@ -76,9 +76,9 @@ const Peliculas = () => {
                       /> 
             </button>
         </div> 
-        <div className='titiloo'>
+        <div className='titulo-streaming'>
             <div className="rect_vert"></div>
-            <h2 className='reciente'>Añadidas recientemente</h2>
+            <h2 className='opciones'>Añadidas recientemente</h2>
         </div>
          <div className="CardMovie">
           {peliculas.map((pelicula) => (
