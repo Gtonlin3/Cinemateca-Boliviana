@@ -8,13 +8,7 @@ export default function Home() {
   return (
     <>
       <div className="relative w-full h-screen">
-        {/* <Image
-        src="/Portada-Karate.jpeg"
-        alt="Logo Cinemateca"
-        fill
-        className="object-cover"
-        priority
-      /> */}
+        
         <Header />
         <CarNorticias />
 
@@ -30,3 +24,11 @@ export default function Home() {
     </>
   );
 }
+
+{/* <Image
+          src="/Portada-Karate.jpeg"
+          alt="Logo Cinemateca"
+          fill
+          className="object-cover"
+          priority
+        /> */}
