@@ -1,14 +1,10 @@
-import React from 'react'
-import Login from './Login'
-import { Html, Head, Main, NextScript } from 'next/document'
-const page = () => {
-  return (
-    
-    <>
-        
-      <Login />     
-    </>
-  )
-}
+import React from 'react';
+import Login from './Login';
 
-export default page
+const Page = () => {
+  return (
+    <Login />
+  );
+};
+
+export default Page;

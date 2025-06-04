@@ -1,7 +1,10 @@
+'use client';
+
 import React from "react";
 import Image from "next/image";
 import BackButton from "./BackButton";
 import Link from "next/link";
+import { signIn } from "next-auth/react"; // 👈 Import necesario arriba
 
 const Login = () => {
   return (
@@ -66,7 +69,24 @@ const Login = () => {
           <div className="segundo_rec"></div>
         </div>
         <div className="otras_opciones">
-          <button className="btn-google">
+          
+//Dentro del return
+<button onClick={() => signIn('google')} className="btn-google flex items-center gap-2 px-4 py-2 border rounded bg-white shadow">
+  <Image
+    src="/logo-google.png"
+    alt="Logogoogle"
+    width={20}
+    height={20}
+  />
+  <span>Continuar con Google</span>
+</button>
+
+
+
+
+
+
+         {/* <button className="btn-google">
             <Image
               src="/logo-google.png"
               alt="Logogoogle"
@@ -75,7 +95,8 @@ const Login = () => {
               className="mx-auto mt-5 block"
             />
             Continue with Google
-          </button>
+          </button>  */}
+
           <button className="btn-google">
             <Image
               src="/logo-fb.jpg"
