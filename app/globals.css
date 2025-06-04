@@ -9,7 +9,7 @@
 }
 
 body{
-  background-color: #8888;
+  background-color: black;
   /* background-color: black; */
   font-family: 'Lato', sans-serif;
 }
@@ -298,7 +298,7 @@ a {
 }
 .primer_rec{
   background-color: white;
-  width: 100%;
+  width: 90%;
   height: 1px;
   margin: 10px 0px 10px 0px;
 }
@@ -617,6 +617,18 @@ a {
 .overlay-texto p {
   margin: 0;
   font-size: 1.2rem;
+}
+.primero{
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin: 0px 20px 20px 0px;
+}
+.texto{
+  margin: 0px 20px 0px 0px;
+  text-align: justify;
+  opacity: 0.6;
+  color: #ccc;
 }
 
 
