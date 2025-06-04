@@ -1,5 +1,6 @@
 'use client'
 import React, { useEffect, useState } from 'react'
+import CarritoCompras from './CarritoCompras'
 
 interface ProductoSnack {
   id: string
@@ -19,28 +20,10 @@ interface ComboEspecial {
   Precio: string
 }
 
-const SeccionProductos = ({ titulo, productos }: { titulo: string; productos: ProductoSnack[] }) => (
-  <div>
-    <h3 className='subtitulo' style={{ fontSize: '22px', textAlign: 'left', marginTop: '20px' }}>{titulo}</h3>
-    <div className="menu">
-      <div className="productos-grid">
-        {productos.map(producto => (
-          <div key={producto.id} className="producto-card">
-            <img src={producto.imagen} alt={producto.Nombre} style={{ width: '170px', height: '170px', objectFit: 'cover' }} />
-            <h3>{producto.Nombre}</h3>
-            <p><strong>Stock:</strong> {producto.Stock}</p>
-            <p><strong>Precio:</strong> Bs{producto.Precio}</p>
-            <button>Agregar</button>
-          </div>
-        ))}
-      </div>
-    </div>
-  </div>
-)
-
 const CandyBar = () => {
   const [combos, setCombos] = useState<ComboEspecial[]>([])
   const [productos, setProductos] = useState<ProductoSnack[]>([])
+  const [carrito, setCarrito] = useState<{ id: string; nombre: string; precio: number; cantidad: number; stock: number }[]>([])
 
   useEffect(() => {
     const fetchCombos = async () => {
@@ -67,8 +50,28 @@ const CandyBar = () => {
     fetchProductos()
   }, [])
 
+  const agregarAlCarrito = (producto: ProductoSnack | ComboEspecial) => {
+  setCarrito(prev => {
+    const existe = prev.find(item => item.id === producto.id)
+    if (existe) {
+      return prev.map(item =>
+        item.id === producto.id ? { ...item, cantidad: item.cantidad + 1 } : item
+      )
+    } else {
+      return [...prev, {
+        id: producto.id,
+        nombre: producto.Nombre,
+        precio: parseFloat(producto.Precio.replace(' Bs', '')), 
+        cantidad: 1,
+        stock: producto.Stock ?? 1 // Si no tiene stock, asignamos 1 por defecto
+      }]
+    }
+  })
+}
+
   return (
     <>
+      <CarritoCompras carrito={carrito} setCarrito={setCarrito} />
       <div className='margin'>
         <h2 className='titulo' style={{ textAlign: 'center' }}>Candy Bar CINEMATECA BOLIVIANA</h2>
 
@@ -83,17 +86,33 @@ const CandyBar = () => {
                 <p>{combo.Descripcion}</p>
                 <p><strong>Stock:</strong> {combo.Stock}</p>
                 <p><strong>Precio:</strong> Bs{combo.Precio}</p>
-                <button>Agregar</button>
+                <button onClick={() => agregarAlCarrito(combo)}>Agregar</button>
               </div>
             ))}
           </div>
         </div>
 
-        {/* Secciones adicionales usando el nuevo componente reutilizable */}
-        <SeccionProductos titulo="Comida Rápida" productos={productos.filter(p => p.Seccion === 'Comida Rápida')} />
-        <SeccionProductos titulo="Bebidas" productos={productos.filter(p => p.Seccion === 'Bebidas')} />
-        <SeccionProductos titulo="Snacks" productos={productos.filter(p => p.Seccion === 'Snacks')} />
-        <SeccionProductos titulo="Dulces" productos={productos.filter(p => p.Seccion === 'Dulces')} />
+        {/* Secciones adicionales */}
+        {['Comida Rápida', 'Bebidas', 'Snacks', 'Dulces'].map(seccion => (
+          <div key={seccion}>
+            <h3 className='subtitulo'>{seccion}</h3>
+            <div className="menu">
+              <div className="productos-grid">
+                {productos
+                  .filter(producto => producto.Seccion === seccion)
+                  .map(producto => (
+                    <div key={producto.id} className="producto-card">
+                      <img src={producto.imagen} alt={producto.Nombre} style={{ width: '170px', height: '170px', objectFit: 'cover' }} />
+                      <h3>{producto.Nombre}</h3>
+                      <p><strong>Stock:</strong> {producto.Stock}</p>
+                      <p><strong>Precio:</strong> Bs{producto.Precio}</p>
+                      <button onClick={() => agregarAlCarrito(producto)}>Agregar</button>
+                    </div>
+                  ))}
+              </div>
+            </div>
+          </div>
+        ))}
       </div>
     </>
   )

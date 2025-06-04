@@ -3,7 +3,7 @@
 import React from 'react'
 import CandyBar from './CandyBar'
 import BackButton from '../login/BackButton'
-import CarritoCompras from './Carritodecompras'
+import CarritoCompras from './CarritoCompras'
 
 const Page = () => {
   return (
@@ -16,9 +16,7 @@ const Page = () => {
         <CandyBar />
       </div>
 
-      <div>
-        <CarritoCompras />
-      </div>
+      
     </>
   )
 }

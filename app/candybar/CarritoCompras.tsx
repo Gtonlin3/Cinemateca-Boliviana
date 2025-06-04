@@ -9,8 +9,7 @@ interface ItemCarrito {
   stock: number
 }
 
-const CarritoCompras = () => {
-  const [carrito, setCarrito] = useState<ItemCarrito[]>([])
+const CarritoCompras = ({ carrito, setCarrito }: { carrito: ItemCarrito[]; setCarrito: React.Dispatch<React.SetStateAction<ItemCarrito[]>> }) => {
   const [mostrarSidebar, setMostrarSidebar] = useState(false)
 
   const quitarDelCarrito = (id: string) => {
@@ -25,8 +24,17 @@ const CarritoCompras = () => {
     )
   }
 
-  const total = carrito.reduce((acc, item) => acc + item.precio * item.cantidad, 0)
-  const cantidadTotal = carrito.reduce((acc, item) => acc + item.cantidad, 0)
+  const realizarCompra = () => {
+    setCarrito([])
+    alert('Compra realizada con éxito!')
+  }
+
+  const cancelarCompra = () => {
+    setCarrito([])
+  }
+
+  const total = (carrito ?? []).reduce((acc, item) => acc + item.precio * item.cantidad, 0)
+  const cantidadTotal = (carrito ?? []).reduce((acc, item) => acc + item.cantidad, 0)
 
   return (
     <div>
@@ -58,7 +66,7 @@ const CarritoCompras = () => {
         style={{
           position: 'fixed',
           top: 0,
-          right: mostrarSidebar ? 0 : '-300px',
+          right: mostrarSidebar ? '20px' : '-300px',
           width: '300px',
           height: '100%',
           backgroundColor: '#fff',
@@ -69,8 +77,8 @@ const CarritoCompras = () => {
           overflowY: 'auto'
         }}
       >
-        <h2>Carrito</h2>
-        {carrito.length === 0 ? (
+        <h2>Carrito de Compras</h2>
+        {(carrito ?? []).length === 0 ? (
           <p>Carrito vacío</p>
         ) : (
           <div>
@@ -88,6 +96,8 @@ const CarritoCompras = () => {
               </div>
             ))}
             <h3>Total: Bs {total}</h3>
+            <button onClick={realizarCompra}>Realizar compra</button>
+            <button onClick={cancelarCompra}>Cancelar</button>
           </div>
         )}
       </div>
