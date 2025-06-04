@@ -60,6 +60,7 @@ const Inicio = () => {
 
         <div className="CardMovie" >
           {peliculas.map((pelicula) => (
+            
             <MovieCard
               key={pelicula.id}
               title={pelicula.titulo}

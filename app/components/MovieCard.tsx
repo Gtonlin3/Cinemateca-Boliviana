@@ -10,14 +10,14 @@ interface Props {
 const MovieCard = ({ title, image, genre }: Props) => {
   return (
     <Link href={`/movies/${title}`}>
-      <div className='card-title'>
+      <div className='card-img-title'>
+
         <div className='card-pelicula'>
           <img src={image} alt={title} className='img-pelicula' />
         </div>
 
-      <div>
-        <p>{title}</p>
-      </div>
+        <p className='titulo-movie'>{title}</p>
+
     </div>      
     </Link>
   )
