@@ -5,8 +5,9 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
   images: {
     domains: [
-      'i87.servimg.com',       // para los pósters de tu MockAPI
-      'images.unsplash.com',   // para las portadas de ejemplo de Inicio
+      'i87.servimg.com',       // aún válido si lo usas en otros lugares
+      'i19.servimg.com',       // ✅ este es el que necesitas para los estrenos
+      'images.unsplash.com',
     ],
   },
 };

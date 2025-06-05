@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'next/navigation';
 import Image from 'next/image';
 import BackButton from './BackButton';
+import  Link from 'next/link';
 
 interface PeliculaDetalle {
   id: string;
@@ -64,7 +65,7 @@ const MovieDetailPage = () => {
       <div className='margin'>
 
 
-      <h1 className="titulo-detalle">{pelicula.titulo}</h1>
+      
 
       <div className="poster-info">
         <div className="poster-detalle">
@@ -78,27 +79,49 @@ const MovieDetailPage = () => {
         </div>
 
         <div className="info-detalle">
+          <h1 className="titulo-detalle">{pelicula.titulo}</h1>
           <p><strong>Año:</strong> {pelicula.year}</p>
           <p><strong>Género:</strong> {pelicula.genero}</p>
           <p><strong>Calificación:</strong> {pelicula.calificacion}/10</p>
           <p><strong>Formato:</strong> {pelicula.formato}</p>
           <p><strong>Duración:</strong> {pelicula.duracion} min</p>
           <p><strong>Categoría:</strong> {pelicula.categoria}</p>
+          <br />
+          <h3>Descripción</h3>
           <p className="descripcion">{pelicula.descripcion}</p>
-
-          <div className="horarios">
+         
+          {/* <div className="horarios">
             <p><strong>Funciones:</strong></p>
             <ul>
               <li>Función 1: {pelicula.f1}</li>
               <li>Función 2: {pelicula.f2}</li>
               <li>Función 3: {pelicula.f3}</li>
             </ul>
+          </div> */}
+          <br />
+
+          <div className='btns'>
+
+
+          {/* <Link href="/calificacion" className="btn-opc">
+          <p className="opciones">Comprar</p>
+          </Link> */}
+          <Link href={pelicula.movie} className="btn-opc">
+            <p className='opciones'>Ver</p>
+          </Link>
+          <Link href="/calificacion" className="btn-opc">
+            <p className='opciones'>Calificar</p>
+          </Link>
+          <Link href="/reseñas" className="btn-opc">
+            <p className='opciones'>Reseñas</p>
+          </Link>
+        
           </div>
         </div>
       </div>
 
       <div className="video-seccion">
-        <h2>Tráiler</h2>
+        <h3>Tráiler</h3>
         <div className="video-wrapper">
           <iframe
             src={pelicula.trailer.replace('watch?v=', 'embed/')}
@@ -108,16 +131,7 @@ const MovieDetailPage = () => {
             allowFullScreen
           ></iframe>
         </div>
-
-        <h2>Ver Película Completa</h2>
-        <a
-          href={pelicula.movie}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="btn-ver-movie"
-        >
-          ▶️ Reproducir Ahora
-        </a>
+        
       </div>
       <br />
 
@@ -143,7 +157,7 @@ const MovieDetailPage = () => {
           display: flex;
           gap: 2rem;
           flex-wrap: wrap;
-          margin-bottom: 2rem;
+          // margin-bottom: 2rem;
           
         }
 
@@ -153,6 +167,7 @@ const MovieDetailPage = () => {
           min-width: 280px;
           align-items: center;
           justify-content: center;
+          
         }
         
 
@@ -160,7 +175,14 @@ const MovieDetailPage = () => {
           flex: 2;
           min-width: 300px;
           background-color: red;
-        }
+          border-radius: 16px;
+          background-color: rgba(34, 33, 33, 0.8);  
+          padding: 30px;
+          font-size: 20px;
+          align-items: center;
+          justify-content: center;
+          text-align: justify;
+          }
 
         .descripcion {
           margin-top: 1rem;
@@ -176,24 +198,57 @@ const MovieDetailPage = () => {
           margin-left: 1rem;
         }
 
-        .video-seccion {
-          margin-top: 2.5rem;
-        }
+.video-seccion {
+  margin-top: 1rem;
+}
 
-        .video-seccion h2 {
-          margin-bottom: 0.75rem;
-          font-size: 1.5rem;
-          color: #ffffff;
-        }
+.video-seccion h2 {
+  margin-bottom: 0.75rem;
+  font-size: 1.5rem;
+  color: #ffffff;
+}
 
-        .video-wrapper {
-          position: relative;
-          padding-bottom: 56.25%;
-          height: 0;
-          overflow: hidden;
-          border-radius: 8px;
-          margin-bottom: 1.5rem;
-        }
+.video-wrapper {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  height: 0;
+  overflow: hidden;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+}
+
+.video-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+  z-index: 1; /* Asegura que esté por encima */
+  pointer-events: auto; /* Asegura que se pueda interactuar */
+  touch-action: manipulation; /* Ayuda con gestos táctiles */
+}
+
+
+        // .video-seccion {
+        //   margin-top: 1.0rem;
+        // }
+
+        // .video-seccion h2 {
+        //   margin-bottom: 0.75rem;
+        //   font-size: 1.5rem;
+        //   color: #ffffff;
+        // }
+
+        // .video-wrapper {
+        //   position: relative;
+        //   padding-bottom: 56.25%;
+        //   height: 0;
+        //   overflow: hidden;
+        //   border-radius: 8px;
+        //   margin-bottom: 1.5rem;
+        // }
 
         .video-wrapper iframe {
           position: absolute;
@@ -203,16 +258,16 @@ const MovieDetailPage = () => {
           height: 100%;
         }
 
-        .btn-ver-movie {
-          display: inline-block;
-          padding: 0.75rem 1.5rem;
-          background-color: #ff5722;
-          color: #fff;
-          text-decoration: none;
-          border-radius: 5px;
-          font-weight: bold;
-          transition: background-color 0.3s ease;
-        }
+        // .btn-ver-movie {
+        //   display: inline-block;
+        //   padding: 0.75rem 1.5rem;
+        //   background-color: #ff5722;
+        //   color: #fff;
+        //   text-decoration: none;
+        //   border-radius: 5px;
+        //   font-weight: bold;
+        //   transition: background-color 0.3s ease;
+        // }
 
         .btn-ver-movie:hover {
           background-color: #e64a19;
