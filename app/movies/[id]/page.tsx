@@ -10,6 +10,8 @@ interface PeliculaDetalle {
   titulo: string;
   year: number;
   genero: string;
+  duracion: number;
+  categoria: string;
   calificacion: number;
   descripcion: string;
   trailer: string;
@@ -19,6 +21,7 @@ interface PeliculaDetalle {
   f1: string;
   f2: string;
   f3: string;
+  
 }
 
 const MovieDetailPage = () => {
@@ -79,6 +82,8 @@ const MovieDetailPage = () => {
           <p><strong>Género:</strong> {pelicula.genero}</p>
           <p><strong>Calificación:</strong> {pelicula.calificacion}/10</p>
           <p><strong>Formato:</strong> {pelicula.formato}</p>
+          <p><strong>Duración:</strong> {pelicula.duracion} min</p>
+          <p><strong>Categoría:</strong> {pelicula.categoria}</p>
           <p className="descripcion">{pelicula.descripcion}</p>
 
           <div className="horarios">

@@ -1,4 +1,3 @@
-// MovieCard.tsx
 import React from 'react';
 import Link from 'next/link';
 import Calificacion from './calificacion/Calificacion';
@@ -13,14 +12,14 @@ interface Props {
 
 const MovieCard = ({ id, title, image, genre , calificacion }: Props) => {
   return (
-      <Link href={`/movies/${id}`} style={{ textDecoration: 'none' }}>
-       <div className='movie-card-item'> 
+    <Link href={`/movies/${id}`} style={{ textDecoration: 'none' }}>
+      <div className='movie-card-item'> 
         <div className='card-pelicula'>
           <img src={image} alt={title} className='img-pelicula' />
         </div>
         <div className='movie-info-wrapper'>
           <p className='titulo-movie'>{title}</p>
-          
+          <p className='genero-movie'>{genre}</p> {/* Género opcional */}
           <Calificacion calificacion={calificacion} />
         </div>
       </div>
@@ -29,7 +28,6 @@ const MovieCard = ({ id, title, image, genre , calificacion }: Props) => {
 };
 
 export default MovieCard;
-
 
 // .card-pelicula {
 //   background: rgba(0, 0, 0, 0.25);
