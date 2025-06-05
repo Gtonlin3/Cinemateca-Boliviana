@@ -1,6 +1,7 @@
 import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
+import Compartir from '@/app/compartir/Compartir'
 
 const BackButton = () => {
   return (
@@ -18,14 +19,7 @@ const BackButton = () => {
         
 
     </div>
-        <Link href="/streaming">
-         <Image 
-                   src="/ico-compartir.svg"
-                   alt="icoAtras"
-                   width={26} 
-                   height= {26}
-                 />       
-        </Link>
+        <Compartir />
     </>
   )
 }
