@@ -139,8 +139,8 @@ body{
 
 .CardMovie {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(112px, 1fr));
-  gap: 25px 15px;
+  grid-template-columns: repeat(auto-fit, minmax(97px, 1fr));
+  gap: 15px 15px;
   justify-items: center;
   align-items: stretch;
   margin: 0px 20px;
@@ -202,16 +202,21 @@ body{
 .movie-info-wrapper {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-end;
   flex-grow: 1;
-  padding: 10px 8px 8px 8px;
+  padding: 0px 8px 8px 8px;
+  flex-direction: column-reverse;
+  align-items: flex-start;
 }
 
 .titulo-movie {
 color: white;
-font-size: 15px;
-margin: 10px 0px;
+font-size: 12px;
+margin: 0px 0px;
 text-decoration: none;
+display: flex;
+align-items: center;
+justify-content: center;
 }
 
 a {

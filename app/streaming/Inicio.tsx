@@ -9,6 +9,7 @@ const peliculas = [
     image:
       'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80',
     genre: 'Documental',
+    calificacion: 8.5,
   },
   {
     id: '2',
@@ -16,6 +17,7 @@ const peliculas = [
     image:
       'https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=800&q=80',
     genre: 'Drama',
+    calificacion: 8.5,
   },
   {
     id: '9',
@@ -23,7 +25,8 @@ const peliculas = [
     image:
       'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=80',
     genre: 'Drama',
-  },
+    calificacion: 7.4,
+    },
 ];
 
 const Inicio = () => {
@@ -69,7 +72,8 @@ const Inicio = () => {
               id={pelicula.id}                 // “id” en lugar de “id”
               title={pelicula.title}           // “titulo” en lugar de “title”
               image={pelicula.image}           // “imagen” en lugar de “image”
-              genre={pelicula.genre}           // “genero” en lugar de “genre”
+              genre={pelicula.genre}
+              calificacion={pelicula.calificacion}           // “genero” en lugar de “genre”
             />
           ))}
         </div>

@@ -8,18 +8,21 @@ const peliculas = [
     titulo: 'La Memoria Infinita',
     imagen: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80', // imagen documental
     genero: 'Documental',
+    calificacion: 8.5,
   },
   {
     id: 2,
     titulo: 'Los Reyes del Mundo',
     imagen: 'https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=800&q=80', // imagen drama
     genero: 'Drama',
+    calificacion: 8.5,
   },
   {
     id: 9,
     titulo: '2012',
     imagen: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=80',  // imagen apocalíptica / desastre
     genero: 'Drama',
+    calificacion: 7.4,
   }
 ];
 
@@ -86,6 +89,7 @@ const Estrenos = () => {
               title={pelicula.titulo}
               image={pelicula.imagen}
               genre={pelicula.genero}
+              calificacion={pelicula.calificacion}
             />
           ))}
         </div>

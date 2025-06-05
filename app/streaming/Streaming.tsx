@@ -54,8 +54,8 @@ const Streaming = () => {
               <Image 
                 src="/logo-play.svg" 
                 alt="LogoCinemateca" 
-                width={190} 
-                height={30} 
+                width={180} 
+                height={40} 
                 priority
               />
               

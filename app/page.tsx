@@ -3,7 +3,7 @@ import Header from "./components/BarraNav/Header";
 import CarNorticias from "./components/carruseles/CarNorticias";
 import CarCartelera from "./components/carruseles/CarCartelera";
 import Link from "next/link";
-import Calificacion from "./components/Estrella calificacion/Calificacion";
+import Calificacion from "./components/calificacion/Calificacion";
 
 export default function Home() {
   return (

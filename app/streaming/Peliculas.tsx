@@ -3,12 +3,14 @@
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import MovieCard from '../components/MovieCard';
+import BackButton from '../login/BackButton';
 
 interface Pelicula {
   id: string;
   titulo: string;
   poster: string;
   genero: string;
+  calificacion: number;
 }
 
 const Peliculas = () => {
@@ -64,13 +66,17 @@ const Peliculas = () => {
       </div>
 
       <div className="CardMovie">
+        
         {peliculas.map((pelicula) => (
+          
           <MovieCard
+          
             key={pelicula.id}
             id={pelicula.id}
             title={pelicula.titulo}
             image={pelicula.poster}
             genre={pelicula.genero}
+            calificacion={pelicula.calificacion}
           />
         ))}
       </div>

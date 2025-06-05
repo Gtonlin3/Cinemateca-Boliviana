@@ -1,25 +1,27 @@
 // MovieCard.tsx
 import React from 'react';
 import Link from 'next/link';
-import Calificacion from './Estrella calificacion/Calificacion';
+import Calificacion from './calificacion/Calificacion';
 
 interface Props {
   id: string;
   title: string;
   image: string; 
   genre: string; 
+  calificacion: number;
 }
 
-const MovieCard = ({ id, title, image, genre }: Props) => {
+const MovieCard = ({ id, title, image, genre , calificacion }: Props) => {
   return (
       <Link href={`/movies/${id}`} style={{ textDecoration: 'none' }}>
        <div className='movie-card-item'> 
         <div className='card-pelicula'>
-          <img src={image} alt={title} className='img-pelicula' />Add commentMore actions
+          <img src={image} alt={title} className='img-pelicula' />
         </div>
-        <div className='movie-info-wrapper'>Add commentMore actions
+        <div className='movie-info-wrapper'>
           <p className='titulo-movie'>{title}</p>
-          <Calificacion />
+          
+          <Calificacion calificacion={calificacion} />
         </div>
       </div>
     </Link>

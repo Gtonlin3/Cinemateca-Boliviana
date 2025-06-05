@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'next/navigation';
 import Image from 'next/image';
+import BackButton from './BackButton';
 
 interface PeliculaDetalle {
   id: string;
@@ -50,7 +51,16 @@ const MovieDetailPage = () => {
   }
 
   return (
+    <>
     <div className="detalle-contenedor">
+
+      <div className="barra-superior">
+        <BackButton />
+    </div>
+
+      <div className='margin'>
+
+
       <h1 className="titulo-detalle">{pelicula.titulo}</h1>
 
       <div className="poster-info">
@@ -104,15 +114,18 @@ const MovieDetailPage = () => {
           ▶️ Reproducir Ahora
         </a>
       </div>
+      <br />
+
+      </div>
 
       <style jsx>{`
-        .detalle-contenedor {
-          max-width: 900px;
-          margin: 2rem auto;
-          padding: 0 1rem;
-          color: #fff;
-          background-color: #121212;
-        }
+        // .detalle-contenedor {
+        //   max-width: 900px;
+        //   margin: 2rem auto;
+        //   padding: 0 1rem;
+        //   color: #fff;
+        //   background-color: #121212;
+        // }
 
         .titulo-detalle {
           text-align: center;
@@ -126,16 +139,22 @@ const MovieDetailPage = () => {
           gap: 2rem;
           flex-wrap: wrap;
           margin-bottom: 2rem;
+          
         }
 
         .poster-detalle {
+          display: flex;
           flex: 1;
           min-width: 280px;
+          align-items: center;
+          justify-content: center;
         }
+        
 
         .info-detalle {
           flex: 2;
           min-width: 300px;
+          background-color: red;
         }
 
         .descripcion {
@@ -201,6 +220,7 @@ const MovieDetailPage = () => {
         }
       `}</style>
     </div>
+    </>
   );
 };
 
