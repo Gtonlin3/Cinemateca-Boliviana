@@ -15,8 +15,9 @@ const Novedades = () => {
             </div>
             <p>
             Hoy
-            <div className="primer_rect"></div>
+            
             </p>
+            <hr className="primer_rect"/>
             
             <div className="productos-grid">
                 <div className="producto-card">

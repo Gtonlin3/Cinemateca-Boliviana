@@ -1,101 +1,81 @@
-import React from 'react'
-import CarCartelera from '../components/carruseles/CarCartelera'
-import Image from 'next/image'
-import MovieCard from '../components/MovieCard'
+'use client';
 
-const peliculas = [
-  {
-    id: 1,
-    titulo: 'La Memoria Infinita',
-    imagen: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80', // imagen documental
-    genero: 'Documental',
-  },
-  {
-    id: 2,
-    titulo: 'Los Reyes del Mundo',
-    imagen: 'https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=800&q=80', // imagen drama
-    genero: 'Drama',
-  },
-  {
-    id: 9,
-    titulo: '2012',
-    imagen: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=80',  // imagen apocalíptica / desastre
-    genero: 'Drama',
-  }
-];
+import React, { useEffect, useState } from 'react';
+import Image from 'next/image';
+import MovieCard from '../components/MovieCard';
 
-const Peliculas = () => {
-  return (
-    <>  
-    <div className="encabezado">
-        <div className='ult'> 
-          <div className="primer_rect"></div>
-          <p className="ultimas">Ultimas Peliculas Agregadas</p>
-          <div className="segundo_rect"></div>
-        </div>
-        
-        <div className='btns'>
-            <button className="btn-opc">
-              <p className="opciones">Genero</p>
-              <Image
-                        src="/ico-menu.svg"
-                        alt="LogoNav"
-                        width={14}
-                        height={14}
-                        priority
-                      /> 
-            </button>
-            <button className="btn-opc">
-              <p className="opciones">Año</p> 
-               <Image
-                        src="/ico-menu.svg"
-                        alt="LogoNav"
-                        width={14}
-                        height={14}
-                        priority
-                      /> 
-            </button>
-            <button className="btn-opc">
-              <p className="opciones">Calidad</p>  
-               <Image
-                        src="/ico-menu.svg"
-                        alt="LogoNav"
-                        width={14}
-                        height={14}
-                        priority
-                      />
-            </button>
-            <button className="btn-opc">
-              <p className="opciones">Popularidad</p>
-               <Image
-                        src="/ico-menu.svg"
-                        alt="LogoNav"
-                        width={14}
-                        height={14}
-                        priority
-                      /> 
-            </button>
-        </div> 
-        <div className='titulo-streaming'>
-            <div className="rect_vert"></div>
-            <h2 className='opciones'>Añadidas recientemente</h2>
-        </div>
-         <div className="CardMovie">
-          {peliculas.map((pelicula) => (
-            <MovieCard
-              key={pelicula.id}
-              title={pelicula.titulo}
-              image={pelicula.imagen}
-              genre={pelicula.genero}
-            />
-          ))}
-        </div>
-            
-          
-        
-    </div>
-    </>
-  )
+interface Pelicula {
+  id: string;
+  titulo: string;
+  poster: string;
+  genero: string;
 }
 
-export default Peliculas
+const Peliculas = () => {
+  const [peliculas, setPeliculas] = useState<Pelicula[]>([]);
+  const [cargando, setCargando] = useState(true);
+
+  useEffect(() => {
+    const obtenerPeliculas = async () => {
+      try {
+        const res = await fetch('https://6840dca5d48516d1d3599ab7.mockapi.io/peliculas');
+        const data = await res.json();
+        setPeliculas(data);
+      } catch (error) {
+        console.error('Error al obtener películas:', error);
+      } finally {
+        setCargando(false);
+      }
+    };
+
+    obtenerPeliculas();
+  }, []);
+
+  if (cargando) {
+    return <p style={{ textAlign: 'center', marginTop: '2rem', color: 'white' }}>Cargando películas…</p>;
+  }
+
+  return (
+    <div className="encabezado">
+      <div className="ult">
+        <div className="primer_rect"></div>
+        <p className="ultimas">Últimas Películas Agregadas</p>
+        <div className="segundo_rect"></div>
+      </div>
+
+      <div className="btns">
+        {['Género', 'Año', 'Calidad', 'Popularidad'].map((texto) => (
+          <button key={texto} className="btn-opc">
+            <p className="opciones">{texto}</p>
+            <Image
+              src="/ico-menu.svg"
+              alt="ícono menú"
+              width={14}
+              height={14}
+              priority
+            />
+          </button>
+        ))}
+      </div>
+
+      <div className="titulo-streaming">
+        <div className="rect_vert"></div>
+        <h2 className="opciones">Añadidas recientemente</h2>
+      </div>
+
+      <div className="CardMovie">
+        {peliculas.map((pelicula) => (
+          <MovieCard
+            key={pelicula.id}
+            id={pelicula.id}
+            title={pelicula.titulo}
+            image={pelicula.poster}
+            genre={pelicula.genero}
+          />
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export default Peliculas;

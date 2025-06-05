@@ -4,24 +4,20 @@ import Link from 'next/link';
 import Calificacion from './Estrella calificacion/Calificacion';
 
 interface Props {
+  id: string;
   title: string;
   image: string; 
   genre: string; 
 }
 
-const MovieCard = ({ title, image, genre }: Props) => {
+const MovieCard = ({ id, title, image, genre }: Props) => {
   return (
-    
-    <Link href={`/movies/${title}`} style={{ textDecoration: 'none' }}>
-      
-      <div className='movie-card-item'> 
+      <Link href={`/movies/${id}`} style={{ textDecoration: 'none' }}>
+       <div className='movie-card-item'> 
         <div className='card-pelicula'>
-          
-          <img src={image} alt={title} className='img-pelicula' />
+          <img src={image} alt={title} className='img-pelicula' />Add commentMore actions
         </div>
-
-        {/* 2. Nuevo contenedor para título y calificación */}
-        <div className='movie-info-wrapper'>
+        <div className='movie-info-wrapper'>Add commentMore actions
           <p className='titulo-movie'>{title}</p>
           <Calificacion />
         </div>
@@ -31,6 +27,7 @@ const MovieCard = ({ title, image, genre }: Props) => {
 };
 
 export default MovieCard;
+
 
 // .card-pelicula {
 //   background: rgba(0, 0, 0, 0.25);

@@ -4,25 +4,27 @@ import Image from 'next/image'
 
 const peliculas = [
   {
-    id: 1,
-    titulo: 'La Memoria Infinita',
-    imagen: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80', // imagen documental
-    genero: 'Documental',
+    id: '1',
+    title: 'La Memoria Infinita',
+    image:
+      'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80',
+    genre: 'Documental',
   },
   {
-    id: 2,
-    titulo: 'Los Reyes del Mundo',
-    imagen: 'https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=800&q=80', // imagen drama
-    genero: 'Drama',
+    id: '2',
+    title: 'Los Reyes del Mundo',
+    image:
+      'https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=800&q=80',
+    genre: 'Drama',
   },
   {
-    id: 9,
-    titulo: '2012',
-    imagen: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=80',  // imagen apocalíptica / desastre
-    genero: 'Drama',
-  }
+    id: '9',
+    title: '2012',
+    image:
+      'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=80',
+    genre: 'Drama',
+  },
 ];
-
 
 const Inicio = () => {
 
@@ -45,15 +47,16 @@ const Inicio = () => {
         <div className="recomendaciones-movies">
           <div className="portada">
             <Image
-              src={peliculaActual.imagen}
-              alt={peliculaActual.titulo}
-              layout="fill"
-              objectFit="cover"
-              className="imagen-fondo"
+              src={peliculaActual.image}     // “imagen” en lugar de “image”
+              alt={peliculaActual.title}      // “titulo” en lugar de “title”
+              fill                             // usa “fill” en lugar de layout
+              style={{ objectFit: 'contain' }} // objectFit va en style cuando usamos fill
+              className="imagen-fondo-streaming"
+              priority
             />
             <div className="overlay-texto">
-              <h2>{peliculaActual.titulo}</h2>
-              <p>{peliculaActual.genero}</p>
+              <h2>{peliculaActual.title}</h2>
+              <p>{peliculaActual.genre}</p>
             </div>
           </div>
         </div>
@@ -62,10 +65,11 @@ const Inicio = () => {
           {peliculas.map((pelicula) => (
             
             <MovieCard
-              key={pelicula.id}
-              title={pelicula.titulo}
-              image={pelicula.imagen}
-              genre={pelicula.genero}
+              key={pelicula.id}                // “id” en lugar de “id”
+              id={pelicula.id}                 // “id” en lugar de “id”
+              title={pelicula.title}           // “titulo” en lugar de “title”
+              image={pelicula.image}           // “imagen” en lugar de “image”
+              genre={pelicula.genre}           // “genero” en lugar de “genre”
             />
           ))}
         </div>
