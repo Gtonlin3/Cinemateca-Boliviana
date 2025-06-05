@@ -8,12 +8,7 @@ import Calificacion from "./components/Estrella calificacion/Calificacion";
 export default function Home() {
   return (
     <>
-      
-      <CarCartelera />
-    </>
-  );
-}
-/* <div className="relative w-full h-screen">
+      <div className="relative w-full h-screen">
         
         <Header />
         <CarNorticias />
@@ -26,7 +21,11 @@ export default function Home() {
         </div>
 
         <CarCartelera />
-      </div> */
+      </div> 
+    </>
+  );
+}
+
 {/* <Image
           src="/Portada-Karate.jpeg"
           alt="Logo Cinemateca"
