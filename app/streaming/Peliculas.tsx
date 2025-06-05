@@ -3,7 +3,6 @@
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import MovieCard from '../components/MovieCard';
-import BackButton from '../login/BackButton';
 
 interface Pelicula {
   id: string;
@@ -39,6 +38,7 @@ const Peliculas = () => {
 
   return (
     <div className="encabezado">
+
       <div className="ult">
         <div className="primer_rect"></div>
         <p className="ultimas">Últimas Películas Agregadas</p>
@@ -54,7 +54,6 @@ const Peliculas = () => {
               alt="ícono menú"
               width={14}
               height={14}
-              priority
             />
           </button>
         ))}
@@ -66,20 +65,18 @@ const Peliculas = () => {
       </div>
 
       <div className="CardMovie">
-        
         {peliculas.map((pelicula) => (
-          
           <MovieCard
-          
             key={pelicula.id}
             id={pelicula.id}
             title={pelicula.titulo}
             image={pelicula.poster}
-            genre={pelicula.genero}
+            // genre={pelicula.genero}
             calificacion={pelicula.calificacion}
           />
         ))}
       </div>
+
     </div>
   );
 };

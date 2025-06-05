@@ -15,6 +15,14 @@ const BackButton = () => {
                  />       
        </Link>
     </div>
+    <Link href="/streaming">
+         <Image 
+                   src="/ico-compartir.svg"
+                   alt="icoAtras"
+                   width={26} 
+                   height= {26}
+                 />       
+        </Link>
     </>
   )
 }

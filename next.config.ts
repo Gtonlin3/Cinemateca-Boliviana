@@ -5,9 +5,11 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
   images: {
     domains: [
-      'i87.servimg.com',       // aún válido si lo usas en otros lugares
-      'i19.servimg.com',       // ✅ este es el que necesitas para los estrenos
+      'i87.servimg.com',
+      'i19.servimg.com',
+      'i51.servimg.com',       // ✅ <-- AGREGA ESTE
       'images.unsplash.com',
+      'm.media-amazon.com',
     ],
   },
 };

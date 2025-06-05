@@ -52,7 +52,6 @@ const EstrenosPage = () => {
                     alt="ícono menú"
                     width={14}
                     height={14}
-                    priority
                   />
                 </button>
               ))}
@@ -71,12 +70,13 @@ const EstrenosPage = () => {
             id={e.id}
             title={e.titulo}
             image={e.poster}
-            genre={e.genero}
+            // genre={e.genero}
             calificacion={e.calificacion}
             type="estrenos" // 👈 importante para redirigir al detalle correcto
           />
         ))}
       </div>
+      
     </div>
   );
 };

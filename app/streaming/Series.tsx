@@ -1,94 +1,81 @@
-import React from 'react'
-import CarCartelera from '../components/carruseles/CarCartelera'
+'use client';
+
+import React, { useEffect, useState } from 'react';
 import Image from 'next/image'
 import MovieCard from '../components/MovieCard'
 
-const peliculas = [
-  {
-    id: 1,
-    titulo: 'La Memoria Infinita',
-    imagen: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80', // imagen documental
-    genero: 'Documental',
-  },
-  {
-    id: 2,
-    titulo: 'Los Reyes del Mundo',
-    imagen: 'https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=800&q=80', // imagen drama
-    genero: 'Drama',
-  },
-  {
-    id: 9,
-    titulo: '2012',
-    imagen: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=80',  // imagen apocalíptica / desastre
-    genero: 'Drama',
-  }
-];
+interface  Series {
+  id: string;
+  titulo: string;
+  poster: string;
+  genero: string;
+  calificaion: number;
+}
+
 const Series = () => {
+  const [series, setSeries] = useState<Series[]>([]);
+    const [cargando, setCargando] = useState(true);
+  
+    useEffect(() => {
+      const fetchSeries = async () => {
+        try {
+          const res = await fetch('https://68419871d48516d1d35c2e01.mockapi.io/series');
+          const data = await res.json();
+          setSeries(data);
+        } catch (err) {
+          console.error('Error al obtener estrenos:', err);
+        } finally {
+          setCargando(false);
+        }
+      };
+  
+      fetchSeries();
+    }, []);
+  
+    if (cargando) return <p style={{ textAlign: 'center', color: 'white' }}>Cargando Series...</p>;
+
   return (
    <>
       <div className="encabezado">
+
         <div className='ult'> 
           <div className="primer_rect"></div>
           <p className="ultimas">Ultimas Series Agregadas</p>
           <div className="segundo_rect"></div>
         </div>
         
-        <div className='btns'>
-            <button className="btn-opc">
-              <p className="opciones">Genero</p>
-              <Image
-                        src="/ico-menu.svg"
-                        alt="LogoNav"
-                        width={14}
-                        height={14}
-                        priority
-                      /> 
-            </button>
-            <button className="btn-opc">
-              <p className="opciones">Año</p> 
-               <Image
-                        src="/ico-menu.svg"
-                        alt="LogoNav"
-                        width={14}
-                        height={14}
-                        priority
-                      /> 
-            </button>
-            <button className="btn-opc">
-              <p className="opciones">Calidad</p>  
-               <Image
-                        src="/ico-menu.svg"
-                        alt="LogoNav"
-                        width={14}
-                        height={14}
-                        priority
-                      />
-            </button>
-            <button className="btn-opc">
-              <p className="opciones">Popularidad</p>
-               <Image
-                        src="/ico-menu.svg"
-                        alt="LogoNav"
-                        width={14}
-                        height={14}
-                        priority
-                      /> 
-            </button>
-        </div> 
+        <div className="btns">
+                {['Género', 'Año', 'Calidad', 'Popularidad'].map((texto) => (
+                  <button key={texto} className="btn-opc">
+                    <p className="opciones">{texto}</p>
+                    <Image
+                      src="/ico-menu.svg"
+                      alt="ícono menú"
+                      width={14}
+                      height={14}
+                    />
+                  </button>
+                ))}
+              </div>
+
         <div className='titulo-streaming'>
             <div className="rect_vert"></div>
             <h2 className='opciones'>Añadidas recientemente</h2>
         </div>
+
          <div className="CardMovie">
-          {peliculas.map((pelicula) => (
-            <MovieCard
-              key={pelicula.id}
-              title={pelicula.titulo}
-              image={pelicula.imagen}
-              genre={pelicula.genero}
-            />
-          ))}
-        </div>
+        {series.map((s) => (
+          <MovieCard
+            key={s.id}
+            id={s.id}
+            title={s.titulo}
+            image={s.poster}
+            // genre={s.genero}
+            calificacion={s.calificaion}
+            type="series" // 👈 importante para redirigir al detalle correcto
+          />
+        ))}
+      </div>
     </div>
    </>
   )
