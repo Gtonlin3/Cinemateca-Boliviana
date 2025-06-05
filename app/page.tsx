@@ -3,11 +3,17 @@ import Header from "./components/BarraNav/Header";
 import CarNorticias from "./components/carruseles/CarNorticias";
 import CarCartelera from "./components/carruseles/CarCartelera";
 import Link from "next/link";
+import Calificacion from "./components/Estrella calificacion/Calificacion";
 
 export default function Home() {
   return (
     <>
-      <div className="relative w-full h-screen">
+      
+      <CarCartelera />
+    </>
+  );
+}
+/* <div className="relative w-full h-screen">
         
         <Header />
         <CarNorticias />
@@ -20,11 +26,7 @@ export default function Home() {
         </div>
 
         <CarCartelera />
-      </div>
-    </>
-  );
-}
-
+      </div> */
 {/* <Image
           src="/Portada-Karate.jpeg"
           alt="Logo Cinemateca"
