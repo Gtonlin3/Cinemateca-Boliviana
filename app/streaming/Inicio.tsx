@@ -1,88 +1,81 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react';
 import MovieCard from '../components/MovieCard';
-import Image from 'next/image'
+import Image from 'next/image';
 
-const peliculas = [
-  {
-    id: '1',
-    title: 'La Memoria Infinita',
-    image:
-      'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80',
-    genre: 'Documental',
-    calificacion: 8.5,
-  },
-  {
-    id: '2',
-    title: 'Los Reyes del Mundo',
-    image:
-      'https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=800&q=80',
-    genre: 'Drama',
-    calificacion: 8.5,
-  },
-  {
-    id: '9',
-    title: '2012',
-    image:
-      'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=80',
-    genre: 'Drama',
-    calificacion: 7.4,
-    },
-];
+interface Inicio {
+  id: string;
+  titulo: string;
+  poster: string;
+  genero: string;
+  calificacion: number;
+  portada: string;
+}
 
-const Inicio = () => {
-
-    const [index, setIndex] = useState(0);
+const InicioPage = () => {
+  const [inicio, setInicio] = useState<Inicio[]>([]);
+  const [cargando, setCargando] = useState(true);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setIndex(prevIndex => (prevIndex + 1) % peliculas.length);
-    }, 8000); // Cambia cada 8 segundos
+    const fetchInicio = async () => {
+      try {
+        const res = await fetch('https://683b6a5828a0b0f2fdc49f95.mockapi.io/inicio');
+        const data = await res.json();
+        setInicio(data);
+      } catch (err) {
+        console.error('Error al obtener estrenos:', err);
+      } finally {
+        setCargando(false);
+      }
+    };
 
-    return () => clearInterval(interval);
+    fetchInicio();
   }, []);
 
-  const peliculaActual = peliculas[index];
+  if (cargando) {
+    return <p style={{ textAlign: 'center', color: 'white' }}>Cargando inicio...</p>;
+  }
+
+  // Tomamos la primera película para la portada
+  const peliculaDestacada = inicio[0];
 
   return (
-    <>
     <div>
-
+      {/* Portada principal */}
+      {peliculaDestacada && (
         <div className="recomendaciones-movies">
           <div className="portada">
             <Image
-              src={peliculaActual.image}     // “imagen” en lugar de “image”
-              alt={peliculaActual.title}      // “titulo” en lugar de “title”
-              fill                             // usa “fill” en lugar de layout
-              style={{ objectFit: 'contain' }} // objectFit va en style cuando usamos fill
+              src={peliculaDestacada.portada}
+              alt={peliculaDestacada.titulo}
+              fill
+              style={{ objectFit: 'cover' }}
               className="imagen-fondo-streaming"
               priority
             />
             <div className="overlay-texto">
-              <h2>{peliculaActual.title}</h2>
-              <p>{peliculaActual.genre}</p>
+              <h2>{peliculaDestacada.titulo}</h2>
+              <p>{peliculaDestacada.genero}</p>
             </div>
           </div>
         </div>
+      )}
 
-        <div className="CardMovie" >
-          {peliculas.map((pelicula) => (
-            
-            <MovieCard
-              key={pelicula.id}                // “id” en lugar de “id”
-              id={pelicula.id}                 // “id” en lugar de “id”
-              title={pelicula.title}           // “titulo” en lugar de “title”
-              image={pelicula.image}           // “imagen” en lugar de “image”
-              genre={pelicula.genre}
-              calificacion={pelicula.calificacion}           // “genero” en lugar de “genre”
-            />
-          ))}
-        </div>
-
+      {/* Lista de películas */}
+      <div className="CardMovie">
+        {inicio.map((inicio) => (
+          <MovieCard
+            key={inicio.id}
+            id={inicio.id}
+            title={inicio.titulo}
+            image={inicio.poster}
+            // genre={inicio.genero}
+            calificacion={inicio.calificacion}
+            type="inicio"
+          />
+        ))}
       </div>
-    
-    </>
-  )
-}
+    </div>
+  );
+};
 
-export default Inicio
-
+export default InicioPage;

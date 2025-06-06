@@ -22,31 +22,31 @@ interface EstrenoDetalle {
   f1: string;
   f2: string;
   f3: string;
+  portada: string;
 }
 
-const EstrenoDetailPage = () => {
-  const params = useParams();
-  const id = Array.isArray(params.id) ? params.id[0] : params.id;
-  const [estreno, setEstreno] = useState<EstrenoDetalle | null>(null);
-  const [cargando, setCargando] = useState(true);
-
-  useEffect(() => {
-    if (!id) return;
-
+const page = () => {
+      const params = useParams();
+      const id = Array.isArray(params.id) ? params.id[0] : params.id;
+      const [estreno, setEstreno] = useState<EstrenoDetalle | null>(null);
+      const [cargando, setCargando] = useState(true);
     
-    fetch(`https://6840dca5d48516d1d3599ab7.mockapi.io/estrenos/${id}`)
-      .then((res) => {
-        if (!res.ok) throw new Error('No se encontró el estreno');
-        return res.json();
-      })
-      .then((data: EstrenoDetalle) => setEstreno(data))
-      .catch((err) => console.error(err))
-      .finally(() => setCargando(false));
-  }, [id]);
-
-  if (cargando) return <p className="mensaje-cargando">Cargando detalles…</p>;
-  if (!estreno) return <p className="mensaje-cargando">Estreno no encontrado.</p>;
-
+      useEffect(() => {
+        if (!id) return;
+    
+        fetch(`https://683b6a5828a0b0f2fdc49f95.mockapi.io/inicio/${id}`)
+          .then((res) => {
+            if (!res.ok) throw new Error('No se encontró el estreno');
+            return res.json();
+          })
+          .then((data: EstrenoDetalle) => setEstreno(data))
+          .catch((err) => console.error(err))
+          .finally(() => setCargando(false));
+      }, [id]);
+    
+      if (cargando) return <p className="mensaje-cargando">Cargando detalles…</p>;
+      if (!estreno) return <p className="mensaje-cargando">Estreno no encontrado.</p>;
+    
   return (
     <div className="detalle-contenedor">
       <div className="barra-superior">
@@ -172,7 +172,7 @@ const EstrenoDetailPage = () => {
         }
       `}</style>
     </div>
-  );
-};
+  )
+}
 
-export default EstrenoDetailPage;
+export default page
