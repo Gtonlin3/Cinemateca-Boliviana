@@ -7,6 +7,8 @@ interface ItemCarrito {
   precio: number
   cantidad: number
   stock: number
+  imagen: string
+  seccion: string
 }
 
 const CarritoCompras = ({ carrito, setCarrito }: { carrito: ItemCarrito[]; setCarrito: React.Dispatch<React.SetStateAction<ItemCarrito[]>> }) => {
@@ -19,22 +21,31 @@ const CarritoCompras = ({ carrito, setCarrito }: { carrito: ItemCarrito[]; setCa
   const cambiarCantidad = (id: string, cantidad: number) => {
     setCarrito(prev =>
       prev.map(item =>
-        item.id === id ? { ...item, cantidad } : item
+        item.id === id ? { ...item, cantidad: Math.max(1, cantidad) } : item
       )
     )
   }
 
-  const realizarCompra = () => {
-    setCarrito([])
-    alert('Compra realizada con éxito!')
-  }
+  const actualizarStock = async () => {
+    try {
+      await Promise.all(carrito.map(async (item) => {
+        if (item.stock > 0) {
+          const nuevoStock = item.stock - item.cantidad
 
-  const cancelarCompra = () => {
-    setCarrito([])
+          await fetch(`https://68423e50e1347494c31c37f5.mockapi.io/productosSnack/${item.id}`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ Stock: nuevoStock })
+          })
+        }
+      }))
+      
+      setCarrito([])
+      alert('Compra realizada con éxito! Stock actualizado.')
+    } catch (error) {
+      console.error('Error al actualizar el stock:', error)
+    }
   }
-
-  const total = (carrito ?? []).reduce((acc, item) => acc + item.precio * item.cantidad, 0)
-  const cantidadTotal = (carrito ?? []).reduce((acc, item) => acc + item.cantidad, 0)
 
   return (
     <div>
@@ -58,7 +69,7 @@ const CarritoCompras = ({ carrito, setCarrito }: { carrito: ItemCarrito[]; setCa
         }}
         onClick={() => setMostrarSidebar(!mostrarSidebar)}
       >
-        🛒{cantidadTotal}
+        🛒{carrito.reduce((acc, item) => acc + item.cantidad, 0)}
       </div>
 
       {/* Pestaña corrediza */}
@@ -74,30 +85,35 @@ const CarritoCompras = ({ carrito, setCarrito }: { carrito: ItemCarrito[]; setCa
           padding: '20px',
           transition: 'right 0.3s ease-in-out',
           zIndex: 999,
-          overflowY: 'auto'
+          overflowY: 'auto',
+          display: mostrarSidebar ? 'block' : 'none'
         }}
       >
         <h2>Carrito de Compras</h2>
+        
+
         {(carrito ?? []).length === 0 ? (
           <p>Carrito vacío</p>
         ) : (
           <div>
             {carrito.map(item => (
               <div key={item.id} style={{ borderBottom: '1px solid #ccc', marginBottom: 10 }}>
-                <h4>{item.nombre}</h4>
-                <p>
-                  Cantidad:{' '}
-                  <button onClick={() => item.cantidad > 1 && cambiarCantidad(item.id, item.cantidad - 1)}>-</button>
+                <img src={item.imagen} alt={item.nombre} style={{ width: '60px', height: '60px', objectFit: 'cover', borderRadius: '8px' }} />
+                <h4>{item.nombre} - Bs {item.precio}</h4>
+                <p><strong>Sección:</strong> {item.seccion}</p>
+                <p>Cantidad:{' '}
+                  <button onClick={() => cambiarCantidad(item.id, item.cantidad - 1)}>-</button>
                   {' '}{item.cantidad}{' '}
-                  <button onClick={() => item.cantidad < item.stock && cambiarCantidad(item.id, item.cantidad + 1)}>+</button>
+                  <button onClick={() => cambiarCantidad(item.id, item.cantidad + 1)}>+</button>
                 </p>
                 <p>Subtotal: Bs {item.precio * item.cantidad}</p>
                 <button onClick={() => quitarDelCarrito(item.id)}>Quitar</button>
               </div>
             ))}
-            <h3>Total: Bs {total}</h3>
-            <button onClick={realizarCompra}>Realizar compra</button>
-            <button onClick={cancelarCompra}>Cancelar</button>
+            <h3 style={{ fontSize: '20px', fontWeight: 'bold', textAlign: 'center' }}>
+              Total de la compra: Bs {carrito.reduce((acc, item) => acc + item.precio * item.cantidad, 0)}
+            </h3>
+            <button onClick={actualizarStock}>Realizar compra</button>
           </div>
         )}
       </div>
