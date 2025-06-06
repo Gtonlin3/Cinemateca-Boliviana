@@ -6,48 +6,65 @@ import Image from 'next/image';
 import Link from 'next/link';
 import BackButton from './BackButton';
 
-interface EstrenoDetalle {
+interface ContenidoDetalle {
   id: string;
   titulo: string;
-  year: number;
+  year?: number;
   genero: string;
-  duracion: number;
-  categoria: string;
+  duracion?: number;
+  categoria?: string;
   calificacion: number;
-  descripcion: string;
-  trailer: string;
-  movie: string;
-  formato: string;
+  descripcion?: string;
+  trailer?: string;
+  movie?: string;
+  formato?: string;
   poster: string;
-  f1: string;
-  f2: string;
-  f3: string;
-  portada: string;
+  portada?: string;
 }
 
-const page = () => {
-      const params = useParams();
-      const id = Array.isArray(params.id) ? params.id[0] : params.id;
-      const [estreno, setEstreno] = useState<EstrenoDetalle | null>(null);
-      const [cargando, setCargando] = useState(true);
-    
-      useEffect(() => {
-        if (!id) return;
-    
-        fetch(`https://683b6a5828a0b0f2fdc49f95.mockapi.io/inicio/${id}`)
-          .then((res) => {
-            if (!res.ok) throw new Error('No se encontró el estreno');
-            return res.json();
-          })
-          .then((data: EstrenoDetalle) => setEstreno(data))
-          .catch((err) => console.error(err))
-          .finally(() => setCargando(false));
-      }, [id]);
-    
-      if (cargando) return <p className="mensaje-cargando">Cargando detalles…</p>;
-      if (!estreno) return <p className="mensaje-cargando">Estreno no encontrado.</p>;
-    
+const Page = () => {
+  const params = useParams();
+  const id = Array.isArray(params.id) ? params.id[0] : params.id;
+
+  const [detalle, setDetalle] = useState<ContenidoDetalle | null>(null);
+  const [cargando, setCargando] = useState(true);
+
+  useEffect(() => {
+    if (!id) return;
+
+    const fetchData = async () => {
+      try {
+        // Separar el prefijo del ID para saber de qué endpoint viene
+        const [tipo, rawId] = id.split('-');
+        let baseUrl = '';
+
+        if (tipo === 'estreno') {
+          baseUrl = 'https://6840dca5d48516d1d3599ab7.mockapi.io/estrenos';
+        } else if (tipo === 'serie') {
+          baseUrl = 'https://68419871d48516d1d35c2e01.mockapi.io/series';
+        } else if (tipo === 'pelicula') {
+          baseUrl = 'https://6840dca5d48516d1d3599ab7.mockapi.io/peliculas';
+        }
+
+        const res = await fetch(`${baseUrl}/${rawId}`);
+        if (!res.ok) throw new Error('Contenido no encontrado');
+        const data = await res.json();
+        setDetalle(data);
+      } catch (error) {
+        console.error('Error al obtener el detalle:', error);
+      } finally {
+        setCargando(false);
+      }
+    };
+
+    fetchData();
+  }, [id]);
+
+  if (cargando) return <p className="mensaje-cargando">Cargando detalles…</p>;
+  if (!detalle) return <p className="mensaje-cargando">Contenido no encontrado.</p>;
+
   return (
+
     <div className="detalle-contenedor">
       <div className="barra-superior">
         <BackButton />
@@ -57,8 +74,8 @@ const page = () => {
         <div className="poster-info">
           <div className="poster-detalle">
             <Image
-              src={estreno.poster}
-              alt={estreno.titulo}
+              src={detalle.poster}
+              alt={detalle.titulo}
               width={300}
               height={450}
               style={{ objectFit: 'cover', borderRadius: '8px' }}
@@ -66,23 +83,29 @@ const page = () => {
           </div>
 
           <div className="info-detalle">
-            <h1 className="titulo-detalle">{estreno.titulo}</h1>
-            <p><strong>Año:</strong> {estreno.year}</p>
-            <p><strong>Género:</strong> {estreno.genero}</p>
-            <p><strong>Calificación:</strong> {estreno.calificacion}/10</p>
-            <p><strong>Formato:</strong> {estreno.formato}</p>
-            <p><strong>Duración:</strong> {estreno.duracion} min</p>
-            <p><strong>Categoría:</strong> {estreno.categoria}</p>
+            <h1 className="titulo-detalle">{detalle.titulo}</h1>
+            {detalle.year && <p><strong>Año:</strong> {detalle.year}</p>}
+            <p><strong>Género:</strong> {detalle.genero}</p>
+            <p><strong>Calificación:</strong> {detalle.calificacion}/10</p>
+            {detalle.formato && <p><strong>Formato:</strong> {detalle.formato}</p>}
+            {detalle.duracion && <p><strong>Duración:</strong> {detalle.duracion} min</p>}
+            {detalle.categoria && <p><strong>Categoría:</strong> {detalle.categoria}</p>}
 
-            <br />
-            <h3>Descripción</h3>
-            <p className="descripcion">{estreno.descripcion}</p>
+            {detalle.descripcion && (
+              <>
+                <br />
+                <h3>Descripción</h3>
+                <p className="descripcion">{detalle.descripcion}</p>
+              </>
+            )}
 
             <br />
             <div className="btns">
-              <Link href={estreno.movie} className="btn-opc">
-                <p className="opciones">Ver</p>
-              </Link>
+              {detalle.movie && (
+                <Link href={detalle.movie} className="btn-opc">
+                  <p className="opciones">Ver</p>
+                </Link>
+              )}
               <Link href="/calificacion" className="btn-opc">
                 <p className="opciones">Calificar</p>
               </Link>
@@ -93,18 +116,20 @@ const page = () => {
           </div>
         </div>
 
-        <div className="video-seccion">
-          <h3>Tráiler</h3>
-          <div className="video-wrapper">
-            <iframe
-              src={estreno.trailer.replace('watch?v=', 'embed/')}
-              title={`Tráiler de ${estreno.titulo}`}
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            ></iframe>
+        {detalle.trailer && (
+          <div className="video-seccion">
+            <h3>Tráiler</h3>
+            <div className="video-wrapper">
+              <iframe
+                src={detalle.trailer.replace('watch?v=', 'embed/')}
+                title={`Tráiler de ${detalle.titulo}`}
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              ></iframe>
+            </div>
           </div>
-        </div>
+        )}
       </div>
 
       <style jsx>{`
@@ -170,9 +195,27 @@ const page = () => {
           margin-top: 2rem;
           color: white;
         }
+
+        .btns {
+          display: flex;
+          gap: 1rem;
+          margin-top: 1rem;
+        }
+
+        .btn-opc {
+          padding: 10px 20px;
+          background-color: #0070f3;
+          border-radius: 8px;
+          color: white;
+          text-decoration: none;
+        }
+
+        .btn-opc:hover {
+          background-color: #005bb5;
+        }
       `}</style>
     </div>
-  )
-}
+  );
+};
 
-export default page
+export default Page;

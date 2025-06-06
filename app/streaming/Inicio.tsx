@@ -8,21 +8,34 @@ interface Inicio {
   poster: string;
   genero: string;
   calificacion: number;
-  portada: string;
 }
 
 const InicioPage = () => {
   const [inicio, setInicio] = useState<Inicio[]>([]);
   const [cargando, setCargando] = useState(true);
+  const [indicePortada, setIndicePortada] = useState(0);
 
   useEffect(() => {
     const fetchInicio = async () => {
       try {
-        const res = await fetch('https://683b6a5828a0b0f2fdc49f95.mockapi.io/inicio');
-        const data = await res.json();
-        setInicio(data);
+        const urls = [
+          'https://6840dca5d48516d1d3599ab7.mockapi.io/estrenos',
+          'https://68419871d48516d1d35c2e01.mockapi.io/series',
+          'https://6840dca5d48516d1d3599ab7.mockapi.io/peliculas'
+        ];
+
+        const respuestas = await Promise.all(urls.map((url) => fetch(url)));
+        const datos = await Promise.all(respuestas.map((res) => res.json()));
+
+        const contenidoCombinado: Inicio[] = [
+          ...datos[0].map((item: any) => ({ ...item, id: `estreno-${item.id}` })),
+          ...datos[1].map((item: any) => ({ ...item, id: `serie-${item.id}` })),
+          ...datos[2].map((item: any) => ({ ...item, id: `pelicula-${item.id}` }))
+        ];
+
+        setInicio(contenidoCombinado);
       } catch (err) {
-        console.error('Error al obtener estrenos:', err);
+        console.error('Error al obtener contenido:', err);
       } finally {
         setCargando(false);
       }
@@ -31,12 +44,21 @@ const InicioPage = () => {
     fetchInicio();
   }, []);
 
+  useEffect(() => {
+    if (inicio.length === 0) return;
+
+    const intervalo = setInterval(() => {
+      setIndicePortada((prev) => (prev + 1) % inicio.length);
+    }, 6000);
+
+    return () => clearInterval(intervalo);
+  }, [inicio]);
+
   if (cargando) {
-    return <p style={{ textAlign: 'center', color: 'white' }}>Cargando inicio...</p>;
+    return <p style={{ textAlign: 'center', color: 'white' }}>Cargando contenido...</p>;
   }
 
-  // Tomamos la primera película para la portada
-  const peliculaDestacada = inicio[0];
+  const peliculaDestacada = inicio[indicePortada];
 
   return (
     <div>
@@ -45,7 +67,7 @@ const InicioPage = () => {
         <div className="recomendaciones-movies">
           <div className="portada">
             <Image
-              src={peliculaDestacada.portada}
+              src={peliculaDestacada.poster}
               alt={peliculaDestacada.titulo}
               fill
               style={{ objectFit: 'cover' }}
@@ -62,17 +84,17 @@ const InicioPage = () => {
 
       {/* Lista de películas */}
       <div className="CardMovie">
-        {inicio.map((inicio) => (
+        {inicio.map((item) => (
           <MovieCard
-            key={inicio.id}
-            id={inicio.id}
-            title={inicio.titulo}
-            image={inicio.poster}
-            // genre={inicio.genero}
-            calificacion={inicio.calificacion}
+            key={item.id}
+            id={item.id}
+            title={item.titulo}
+            image={item.poster}
+            calificacion={item.calificacion}
             type="inicio"
           />
         ))}
+
       </div>
     </div>
   );
