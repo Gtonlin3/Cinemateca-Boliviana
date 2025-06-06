@@ -26,27 +26,6 @@ const CarritoCompras = ({ carrito, setCarrito }: { carrito: ItemCarrito[]; setCa
     )
   }
 
-  const actualizarStock = async () => {
-    try {
-      await Promise.all(carrito.map(async (item) => {
-        if (item.stock > 0) {
-          const nuevoStock = item.stock - item.cantidad
-
-          await fetch(`https://68423e50e1347494c31c37f5.mockapi.io/productosSnack/${item.id}`, {
-            method: 'PUT',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ Stock: nuevoStock })
-          })
-        }
-      }))
-      
-      setCarrito([])
-      alert('Compra realizada con éxito! Stock actualizado.')
-    } catch (error) {
-      console.error('Error al actualizar el stock:', error)
-    }
-  }
-
   return (
     <div>
       {/* Ícono del carrito */}
@@ -113,7 +92,7 @@ const CarritoCompras = ({ carrito, setCarrito }: { carrito: ItemCarrito[]; setCa
             <h3 style={{ fontSize: '20px', fontWeight: 'bold', textAlign: 'center' }}>
               Total de la compra: Bs {carrito.reduce((acc, item) => acc + item.precio * item.cantidad, 0)}
             </h3>
-            <button onClick={actualizarStock}>Realizar compra</button>
+            <button onClick={() => window.location.href = '/ProcederConCompra'}>Realizar compra</button>
           </div>
         )}
       </div>
