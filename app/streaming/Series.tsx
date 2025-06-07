@@ -9,7 +9,7 @@ interface  Series {
   titulo: string;
   poster: string;
   genero: string;
-  calificaion: number;
+  calificacion: number;
 }
 
 const Series = () => {
@@ -71,7 +71,7 @@ const Series = () => {
             title={s.titulo}
             image={s.poster}
             // genre={s.genero}
-            calificacion={s.calificaion}
+            calificacion={s.calificacion}
             type="series" // 👈 importante para redirigir al detalle correcto
           />
         ))}
