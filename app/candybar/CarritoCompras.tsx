@@ -76,7 +76,8 @@ const CarritoCompras = ({ carrito, setCarrito }: { carrito: ItemCarrito[]; setCa
           <p>Carrito vacío</p>
         ) : (
           <div>
-            {carrito.map(item => (
+            {(carrito ?? []).map(item => (
+
               <div key={item.id} style={{ borderBottom: '1px solid #ccc', marginBottom: 10 }}>
                 <img src={item.imagen} alt={item.nombre} style={{ width: '60px', height: '60px', objectFit: 'cover', borderRadius: '8px' }} />
                 <h4>{item.nombre} - Bs {item.precio}</h4>
@@ -94,7 +95,7 @@ const CarritoCompras = ({ carrito, setCarrito }: { carrito: ItemCarrito[]; setCa
               Total de la compra: Bs {carrito.reduce((acc, item) => acc + item.precio * item.cantidad, 0)}
             </h3>
             <button onClick={() => setMostrarCompra(true)}>Realizar compra</button>
-            <ProcederConCompra mostrar={mostrarCompra} setMostrar={setMostrarCompra} />
+            <ProcederConCompra mostrar={mostrarCompra} setMostrar={setMostrarCompra} carrito={carrito} />
           </div>
         )}
       </div>
