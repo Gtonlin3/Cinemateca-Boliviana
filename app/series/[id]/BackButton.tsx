@@ -7,7 +7,7 @@ const BackButton = () => {
   return (
     <>
     <div className="btn-back">
-        <Link href="/streaming">
+        <Link href="/streaming?tab=SERIES">
          <Image 
                    src="/ico-atras.svg"
                    alt="icoAtras"

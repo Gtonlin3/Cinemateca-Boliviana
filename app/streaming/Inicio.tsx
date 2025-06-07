@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import MovieCard from '../components/MovieCard';
 import Image from 'next/image';
+import Link from 'next/link';
 
 interface Inicio {
   id: string;
@@ -63,24 +64,43 @@ const InicioPage = () => {
   return (
     <div>
       {/* Portada principal */}
-      {peliculaDestacada && (
-        <div className="recomendaciones-movies">
-          <div className="portada">
-            <Image
-              src={peliculaDestacada.poster}
-              alt={peliculaDestacada.titulo}
-              fill
-              style={{ objectFit: 'cover' }}
-              className="imagen-fondo-streaming"
-              priority
-            />
-            <div className="overlay-texto">
-              <h2>{peliculaDestacada.titulo}</h2>
-              <p>{peliculaDestacada.genero}</p>
-            </div>
-          </div>
+        {peliculaDestacada && (
+  <div className="recomendaciones-movies" style={{ position: 'relative' }}>
+    <button
+      onClick={() => setIndicePortada((prev) => (prev - 1 + inicio.length) % inicio.length)}
+      className="flecha-navegacion izquierda"
+    >
+      ◀
+    </button>
+
+    <Link href={`/inicio/${peliculaDestacada.id}`} passHref>
+      <div className="portada" style={{ cursor: 'pointer' }}>
+        <Image
+          src={peliculaDestacada.poster}
+          alt={peliculaDestacada.titulo}
+          fill
+          style={{ objectFit: 'cover' }}
+          className="imagen-fondo-streaming"
+          priority
+        />
+        <div className="overlay-texto">
+          <h2>{peliculaDestacada.titulo}</h2>
+          <p>{peliculaDestacada.genero}</p>
         </div>
-      )}
+      </div>
+    </Link>
+
+    <button
+      onClick={() => setIndicePortada((prev) => (prev + 1) % inicio.length)}
+      className="flecha-navegacion derecha"
+    >
+      ▶
+    </button>
+  </div>
+)}
+
+
+
 
       {/* Lista de películas */}
       <div className="CardMovie">
