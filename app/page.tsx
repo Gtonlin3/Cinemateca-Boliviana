@@ -14,9 +14,11 @@ export default function Home() {
         <CarNorticias />
 
         <div className="txt-car">
-          <p className="txt-title">CARTELERA</p>
+          <h3 className="titulo">CARTELERA</h3>
           <Link href="./cartelera">
-            <p className="txt-vertodo">Ver todo</p>
+            <h3 className="txt-vertodo">Ver todo 
+
+            </h3>
           </Link>
         </div>
 
@@ -32,4 +34,5 @@ export default function Home() {
           fill
           className="object-cover"
           priority
+          txt-title 
         /> */}

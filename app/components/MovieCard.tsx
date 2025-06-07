@@ -8,7 +8,7 @@ interface Props {
   image: string; 
   genre: string; 
   calificacion: number;
-  type?: 'movies' | 'estrenos' | 'inicio'; // Agregado para distinguir rutas
+  type?: 'movies' | 'estrenos' | 'inicio' | 'cartelera'; // Agregado para distinguir rutas
 }
 
 const MovieCard = ({ id, title, image, genre, calificacion, type = 'movies' }: Props) => {

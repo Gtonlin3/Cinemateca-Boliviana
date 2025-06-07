@@ -24,7 +24,7 @@ interface PeliculaDetalle {
   f3: string;
 }
 
-const MovieDetailPage = () => {
+const CarteleraPage = () => {
   const params = useParams();
   const id = Array.isArray(params.id) ? params.id[0] : params.id;
   const [pelicula, setPelicula] = useState<PeliculaDetalle | null>(null);
@@ -33,7 +33,7 @@ const MovieDetailPage = () => {
   useEffect(() => {
     if (!id) return;
 
-    fetch(`https://6840dca5d48516d1d3599ab7.mockapi.io/peliculas/${id}`)
+    fetch(`https://683b6a5828a0b0f2fdc49f95.mockapi.io/inicio/${id}`)
       .then((res) => {
         if (!res.ok) throw new Error('No se encontró la película');
         return res.json();
@@ -102,17 +102,17 @@ const MovieDetailPage = () => {
           <div className='btns'>
 
 
-          {/* <Link href="/calificacion" className="btn-opc">
+          <Link href="/##" className="btn-opc">
           <p className="opciones">Comprar</p>
-          </Link> */}
-          <Link href={pelicula.movie} className="btn-opc">
-            <p className='opciones'>Ver</p>
           </Link>
+          {/* <Link href={pelicula.movie} className="btn-opc">
+            <p className='opciones'>Ver</p>
+          </Link> */}
           <Link href="/calificacion" className="btn-opc">
             <p className='opciones'>Calificar</p>
           </Link>
           <Link href="/reseñas" className="btn-opc">
-            <p className='opciones'>Reseñas</p>
+            <p className='opciones'>Sinopsis</p>
           </Link>
         
           </div>
@@ -283,4 +283,4 @@ const MovieDetailPage = () => {
   );
 };
 
-export default MovieDetailPage;
+export default CarteleraPage;

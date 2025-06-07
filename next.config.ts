@@ -10,6 +10,11 @@ const nextConfig: NextConfig = {
       'images.unsplash.com',
       'm.media-amazon.com',
       'i.ytimg.com', // ✅ AGREGADO AQUÍ
+      'e00-xlk-ue-marca.uecdn.es', // ✅ AGREGADO AQUÍ
+      'cdn.marvel.com', // ✅ AGREGADO AQUÍ
+      'statics.cinemex.com', // ✅ AGREGADO AQUÍ
+      'pics.filmaffinity.com', // ✅ AGREGADO AQUÍ
+      'harkinsposters.imgix.net',
     ],
   },
 };

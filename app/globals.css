@@ -128,14 +128,6 @@ body{
   align-items: center;
 }
 
-.txt-title{
-  color: white;
-  margin: 0 0 5px 0;
-}
-
-.txt-vertodo{
-  color: rgb(163, 24, 24);
-}
 
 .CardMovie {
   display: grid;
@@ -269,8 +261,13 @@ a {
 .titulo{
   padding: 0px 0px 10px 15px;
   color: white;
-
 }
+
+.txt-vertodo{
+  color: rgb(163, 24, 24);
+  padding: 0px 15px 10px 0px;
+}
+
 .demas{
   display: flex;
   flex-direction: column;
@@ -666,6 +663,7 @@ a {
   gap : 10px;
 
 }
+
 .caja-notificaiones{
   margin: 10px 20px 10px 20px;
 }

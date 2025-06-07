@@ -1,79 +1,61 @@
-import React from 'react'
+'use client';
+
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link'
 import MovieCard from '../MovieCard';
+import Image from 'next/image';
 
-const peliculas = [
-  {
-    id: 1,
-    titulo: 'La Memoria Infinita',
-    imagen: '/portada1.jpg',
-    genero: 'Documental',
-  },
-  {
-    id: 2,
-    titulo: 'Los Reyes del Mundo',
-    imagen: '/portada2.jpg',
-    genero: 'Drama',
-  },
-  {
-    id: 3,
-    titulo: 'Utama',
-    imagen: '/portada3.jpg',
-    genero: 'Ficción',
-  },
-  {
-    id: 4,
-    titulo: 'La Ley de la Luna',
-    imagen: '/portada4.jpg',
-    genero: 'Drama',
-  },
-  {
-    id: 5,
-    titulo: 'Apocalipto',
-    imagen: '/portada5.jpg',
-    genero: 'Drama',
-  },
-  { 
-    id: 6,
-    titulo: 'bicibleta de los huanca',
-    imagen: '/portada6.jpg',
-    genero: 'Drama',  
-  },
-  {
-    id: 7,
-    titulo: 'two men an  half',
-    imagen: '/portada7.jpg',
-    genero: 'Drama',
-  },
-  {
-    id: 8,
-    titulo: 'tony',
-    imagen: '/portada8.jpg',
-    genero: 'Drama',
-  },
-  {
-    id: 9,
-    titulo: '2012',
-    imagen: '/portada9.jpg',  
-    genero: 'Drama',
-  }
-];
+interface Cartelera {
+  id: string;
+  titulo: string;
+  poster: string;
+  genero: string;
+  calificacion: number;
+}
 
 const CarCartelera = () => {
+  const [ cartelera, setCartelera] = useState<Cartelera[]>([]);
+  const [cargando, setCargando] = useState(true);
+
+  useEffect(() => {
+    const obtenerCartelera = async () => {
+      try {
+        const res = await fetch('https://683b6a5828a0b0f2fdc49f95.mockapi.io/inicio');
+        const data = await res.json();
+        setCartelera(data);
+      } catch (error) {
+        console.error('Error al obtener películas:', error);
+      } finally {
+        setCargando(false);
+      }
+    };
+
+    obtenerCartelera();
+  }, []);
+
+  if (cargando) {
+    return <p style={{ textAlign: 'center', marginTop: '2rem', color: 'white' }}>Cargando Cartelera…</p>;
+  }
+
   return (
     <>
-    
-    <div className="CardMovie">
-        {peliculas.map((peliculas) => (
-          <MovieCard
-          key={peliculas.id}
-          title={peliculas.titulo}
-          image={peliculas.imagen}
-          genre={peliculas.genero}
-          
-          />
-        ))}
+      <div className="encabezado">
+
+        <div className="CardMovie">
+          {cartelera.map((cartelera) => (
+            <MovieCard
+              key={cartelera.id}
+              id={cartelera.id}
+              title={cartelera.titulo}
+              image={cartelera.poster}
+              // genre={cartelera.genero}
+              calificacion={cartelera.calificacion}
+              type='cartelera'
+            />
+          ))}
         </div>
+
+      </div>
     </>
   )
 }
