@@ -1,5 +1,6 @@
 'use client'
 import React, { useState } from 'react'
+import ProcederConCompra from './ProcederConCompra'
 
 interface ItemCarrito {
   id: string
@@ -13,6 +14,7 @@ interface ItemCarrito {
 
 const CarritoCompras = ({ carrito, setCarrito }: { carrito: ItemCarrito[]; setCarrito: React.Dispatch<React.SetStateAction<ItemCarrito[]>> }) => {
   const [mostrarSidebar, setMostrarSidebar] = useState(false)
+  const [mostrarCompra, setMostrarCompra] = useState(false) // ✅ MOVIDO dentro del componente
 
   const quitarDelCarrito = (id: string) => {
     setCarrito(prev => prev.filter(item => item.id !== id))
@@ -69,7 +71,6 @@ const CarritoCompras = ({ carrito, setCarrito }: { carrito: ItemCarrito[]; setCa
         }}
       >
         <h2>Carrito de Compras</h2>
-        
 
         {(carrito ?? []).length === 0 ? (
           <p>Carrito vacío</p>
@@ -92,7 +93,8 @@ const CarritoCompras = ({ carrito, setCarrito }: { carrito: ItemCarrito[]; setCa
             <h3 style={{ fontSize: '20px', fontWeight: 'bold', textAlign: 'center' }}>
               Total de la compra: Bs {carrito.reduce((acc, item) => acc + item.precio * item.cantidad, 0)}
             </h3>
-            <button onClick={() => window.location.href = '/ProcederConCompra'}>Realizar compra</button>
+            <button onClick={() => setMostrarCompra(true)}>Realizar compra</button>
+            <ProcederConCompra mostrar={mostrarCompra} setMostrar={setMostrarCompra} />
           </div>
         )}
       </div>
