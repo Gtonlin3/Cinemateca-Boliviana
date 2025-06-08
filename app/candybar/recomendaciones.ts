@@ -47,3 +47,38 @@ export const obtenerSeccionRecomendada = (vectorFinal: Record<string, number>): 
   const posiblesGanadores = Object.keys(vectorFinal).filter(seccion => vectorFinal[seccion] === maxProb);
   return posiblesGanadores[Math.floor(Math.random() * posiblesGanadores.length)];
 };
+
+export const obtenerProductoRecomendado = async (seccion: string): Promise<any | null> => {
+  try {
+    const url = `https://68423e50e1347494c31c37f5.mockapi.io/productosSnack`; // 🔥 URL corregida
+    const res = await fetch(url);
+    const productos = await res.json();
+
+    // 🔥 Depuración: Verificar la respuesta
+    console.log("Datos recibidos de MockAPI:", productos);
+
+    // 🔥 Asegurar que productos es un array válido
+    if (!Array.isArray(productos)) {
+      console.error("Error: La API no devolvió un array válido.");
+      return null;
+    }
+
+    // 🔥 Filtrar productos de la sección recomendada
+    const productosFiltrados = productos.filter((prod: any) => prod.Seccion === seccion);
+
+    if (productosFiltrados.length === 0) {
+      console.warn('No hay productos en la sección recomendada.');
+      return null;
+    }
+
+    // 🔥 Seleccionar el producto con más ventas totales
+    const productoMasVendido = productosFiltrados.sort((a, b) => b.VentasTotales - a.VentasTotales)[0];
+
+    return productoMasVendido;
+  } catch (err) {
+    console.error('Error obteniendo producto recomendado:', err);
+    return null;
+  }
+};
+
+

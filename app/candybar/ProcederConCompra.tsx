@@ -1,6 +1,6 @@
 'use client'
 import React, { useState, useEffect } from 'react'
-import { obtenerVectorInicial, calcularVectorFinal, obtenerSeccionRecomendada } from './recomendaciones'
+import { obtenerVectorInicial, calcularVectorFinal, obtenerSeccionRecomendada, obtenerProductoRecomendado } from './recomendaciones'
 import Prefactura from './Prefactura'
 import PagoQR from './PagoQR'
 
@@ -8,6 +8,7 @@ const ProcederConCompra = ({ mostrar, setMostrar, carrito }: { mostrar: boolean,
   const [vectorInicial, setVectorInicial] = useState<Record<string, number>>({})
   const [vectorFinal, setVectorFinal] = useState<Record<string, number>>({})
   const [seccionRecomendada, setSeccionRecomendada] = useState<string | null>(null)
+  const [productoRecomendado, setProductoRecomendado] = useState<any | null>(null)
   const [qrUrl, setQrUrl] = useState<string | null>(null)
   const [pagoConcretado, setPagoConcretado] = useState(false)
 
@@ -17,7 +18,11 @@ const ProcederConCompra = ({ mostrar, setMostrar, carrito }: { mostrar: boolean,
       const vectorFinalizado = calcularVectorFinal(vectorInit)
       setVectorInicial(vectorInit)
       setVectorFinal(vectorFinalizado)
-      setSeccionRecomendada(obtenerSeccionRecomendada(vectorFinalizado))
+      const mejorSeccion = obtenerSeccionRecomendada(vectorFinalizado)
+      setSeccionRecomendada(mejorSeccion)
+
+      // 🔥 Obtener el producto recomendado
+      obtenerProductoRecomendado(mejorSeccion).then(setProductoRecomendado)
     }
   }, [mostrar, carrito])
 
@@ -45,7 +50,7 @@ const ProcederConCompra = ({ mostrar, setMostrar, carrito }: { mostrar: boolean,
       <h2 style={{ marginBottom: '20px', fontSize: '22px' }}>REALIZAR PAGO</h2>
 
       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-        {/* 🔥 Sección recomendada: mostramos los cálculos */}
+        {/* 🔥 Sección recomendada */}
         <div style={{ width: '50%', paddingRight: '10px' }}>
           <h3>Vector Inicial:</h3>
           <pre>{JSON.stringify(vectorInicial, null, 2)}</pre>
@@ -55,6 +60,17 @@ const ProcederConCompra = ({ mostrar, setMostrar, carrito }: { mostrar: boolean,
 
           <h3>Sección Recomendada:</h3>
           <p><strong>{seccionRecomendada}</strong></p>
+
+          {/* 🔥 Mostrar producto recomendado */}
+          <h3>Producto Recomendado:</h3>
+          {productoRecomendado ? (
+            <div>
+              <img src={productoRecomendado.imagen} alt={productoRecomendado.Nombre} width={60} height={60} style={{ borderRadius: '5px' }} />
+              <strong>{productoRecomendado.Nombre}</strong> - Bs {productoRecomendado.Precio}
+            </div>
+          ) : (
+            <p>No hay producto disponible para recomendar.</p>
+          )}
         </div>
 
         {/* 🔥 Sección de prefactura */}
