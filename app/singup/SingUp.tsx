@@ -1,7 +1,6 @@
 import React from 'react'
 import Image from "next/image";
 import BackButton from "./BackButton";
-import Link from "next/link";
 
 const SingUp = () => {
   return (

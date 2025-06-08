@@ -1,5 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 
 const recomendaciones = [
   {
@@ -42,7 +43,7 @@ const CarRecomen = () => {
     <div className="CarRecomen">
         {recomendaciones.map((item) => (
           <div key={item.id} className="card-pelicula">
-            <img src={item.imagen} alt={item.titulo} className="img-pelicula" />
+            <Image src={item.imagen} alt={item.titulo} className="img-pelicula" />
             <h3>{item.titulo}</h3>
             <p>{item.genero}</p>
           </div>

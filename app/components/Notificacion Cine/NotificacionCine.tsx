@@ -29,8 +29,8 @@ const NotificacionUI: React.FC<{ ticket: TicketInfo }> = ({ ticket }) => {
                 <div className={styles.cuerpo}>
                     <div className={styles.filaTitulo}><span className={styles.iconoPalomitas}>🍿</span><h2 className={styles.tituloPrincipal}>¡Tu función está por comenzar!</h2></div>
                     <p className={styles.descripcion}>
-                        <span className={styles.nombrePelicula}>"{ticket.pelicula}"</span> en{' '}
-                        <span className={styles.salaCine}>{ticket.lugar} - {ticket.sala}</span> a las{' '}
+                        <span className={styles.nombrePelicula}>&quot;{ticket.pelicula}&quot;</span> en{" "}
+                        <span className={styles.salaCine}>{ticket.lugar} - {ticket.sala}</span> a las{" "}
                         <span className={styles.horaFuncion}>{horaFormateada}</span>
                     </p>
                     <p className={styles.textoUrgente}>¡No llegues tarde!</p>

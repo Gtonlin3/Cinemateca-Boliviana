@@ -5,7 +5,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import Compartir from '@/app/compartir/Compartir'
 
-const BackButton = ({ tab = 'INICIO' }: { tab?: string }) => {
+const BackButton = () => {
   return (
     <>
       <div className="btn-back">

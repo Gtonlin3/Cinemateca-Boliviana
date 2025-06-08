@@ -1,9 +1,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import Link from 'next/link'
 import MovieCard from '../MovieCard';
-import Image from 'next/image';
 
 interface Cartelera {
   id: string;
