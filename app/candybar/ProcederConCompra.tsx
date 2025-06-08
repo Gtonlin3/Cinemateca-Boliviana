@@ -1,6 +1,6 @@
 'use client'
 import React, { useState, useEffect } from 'react'
-import { obtenerVectorInicial, calcularVectorFinal, obtenerSeccionRecomendada, obtenerProductoRecomendado } from './recomendaciones'
+import { obtenerVectorInicial, calcularVectorFinal, obtenerSeccionRecomendada, obtenerProductosRecomendados } from './recomendaciones'
 import Prefactura from './Prefactura'
 import PagoQR from './PagoQR'
 
@@ -8,7 +8,7 @@ const ProcederConCompra = ({ mostrar, setMostrar, carrito }: { mostrar: boolean,
   const [vectorInicial, setVectorInicial] = useState<Record<string, number>>({})
   const [vectorFinal, setVectorFinal] = useState<Record<string, number>>({})
   const [seccionRecomendada, setSeccionRecomendada] = useState<string | null>(null)
-  const [productoRecomendado, setProductoRecomendado] = useState<any | null>(null)
+  const [productosRecomendados, setProductosRecomendados] = useState<any[]>([])
   const [qrUrl, setQrUrl] = useState<string | null>(null)
   const [pagoConcretado, setPagoConcretado] = useState(false)
 
@@ -21,8 +21,8 @@ const ProcederConCompra = ({ mostrar, setMostrar, carrito }: { mostrar: boolean,
       const mejorSeccion = obtenerSeccionRecomendada(vectorFinalizado)
       setSeccionRecomendada(mejorSeccion)
 
-      // 🔥 Obtener el producto recomendado
-      obtenerProductoRecomendado(mejorSeccion).then(setProductoRecomendado)
+      // 🔥 Obtener los productos recomendados
+      obtenerProductosRecomendados(mejorSeccion).then(setProductosRecomendados)
     }
   }, [mostrar, carrito])
 
@@ -61,16 +61,16 @@ const ProcederConCompra = ({ mostrar, setMostrar, carrito }: { mostrar: boolean,
           <h3>Sección Recomendada:</h3>
           <p><strong>{seccionRecomendada}</strong></p>
 
-          {/* 🔥 Mostrar producto recomendado */}
-          <h3>Producto Recomendado:</h3>
-          {productoRecomendado ? (
-            <div>
-              <img src={productoRecomendado.imagen} alt={productoRecomendado.Nombre} width={60} height={60} style={{ borderRadius: '5px' }} />
-              <strong>{productoRecomendado.Nombre}</strong> - Bs {productoRecomendado.Precio}
-            </div>
-          ) : (
-            <p>No hay producto disponible para recomendar.</p>
-          )}
+          {/* 🔥 Mostrar productos recomendados */}
+          <h3>Productos Recomendados:</h3>
+          <ul>
+            {productosRecomendados.map((prod) => (
+              <li key={prod.id}>
+                <img src={prod.imagen} alt={prod.Nombre} width={60} height={60} style={{ borderRadius: '5px' }} />
+                <strong>{prod.Nombre}</strong> - Bs {prod.Precio}
+              </li>
+            ))}
+          </ul>
         </div>
 
         {/* 🔥 Sección de prefactura */}

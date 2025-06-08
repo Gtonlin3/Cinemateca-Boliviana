@@ -48,7 +48,7 @@ export const obtenerSeccionRecomendada = (vectorFinal: Record<string, number>): 
   return posiblesGanadores[Math.floor(Math.random() * posiblesGanadores.length)];
 };
 
-export const obtenerProductoRecomendado = async (seccion: string): Promise<any | null> => {
+export const obtenerProductosRecomendados = async (seccion: string): Promise<any[]> => {
   try {
     const url = `https://68423e50e1347494c31c37f5.mockapi.io/productosSnack`; // 🔥 URL corregida
     const res = await fetch(url);
@@ -60,7 +60,7 @@ export const obtenerProductoRecomendado = async (seccion: string): Promise<any |
     // 🔥 Asegurar que productos es un array válido
     if (!Array.isArray(productos)) {
       console.error("Error: La API no devolvió un array válido.");
-      return null;
+      return [];
     }
 
     // 🔥 Filtrar productos de la sección recomendada
@@ -68,16 +68,22 @@ export const obtenerProductoRecomendado = async (seccion: string): Promise<any |
 
     if (productosFiltrados.length === 0) {
       console.warn('No hay productos en la sección recomendada.');
-      return null;
+      return [];
     }
 
     // 🔥 Seleccionar el producto con más ventas totales
     const productoMasVendido = productosFiltrados.sort((a, b) => b.VentasTotales - a.VentasTotales)[0];
 
-    return productoMasVendido;
+    // 🔥 Seleccionar el producto con más ventas recientes, evitando repetir el primero
+    const productosRestantes = productosFiltrados.filter((prod: any) => prod.id !== productoMasVendido.id);
+    const productoMasReciente = productosRestantes.length > 0 
+      ? productosRestantes.sort((a, b) => b.VentasRecientes - a.VentasRecientes)[0] 
+      : null;
+
+    return [productoMasVendido, productoMasReciente].filter(p => p !== null);
   } catch (err) {
-    console.error('Error obteniendo producto recomendado:', err);
-    return null;
+    console.error('Error obteniendo productos recomendados:', err);
+    return [];
   }
 };
 
