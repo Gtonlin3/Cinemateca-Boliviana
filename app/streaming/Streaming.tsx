@@ -1,7 +1,6 @@
 'use client'
 import React, { useEffect, useState } from 'react'
 import BackButton from '../login/BackButton'
-import Logo from '../components/BarraNav/Logo'
 import Inicio from './Inicio'
 import Estrenos from './Estrenos'
 import Peliculas from './Peliculas'

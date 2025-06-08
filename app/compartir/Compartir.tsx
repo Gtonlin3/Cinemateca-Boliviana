@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Image from 'next/image';
 
 const Compartir = () => {
   const abrirModal = () => {
@@ -117,7 +118,7 @@ const Compartir = () => {
       </div>
 
       <button onClick={abrirModal} style={{ background: 'none', border: 'none', padding: 0, marginLeft: '10px' }}>
-        <img src="/ico-compartir.svg" alt="Compartir" width={26} height={26} />
+        <Image src="/ico-compartir.svg" alt="Compartir" width={26} height={26} />
       </button>
     </>
   );

@@ -1,5 +1,6 @@
 'use client'
 import React, { useEffect, useState } from 'react'
+import Image from 'next/image'
 
 interface ProductoCandyBar {
   id: string
@@ -33,7 +34,7 @@ const CandyBar = () => {
       <div className="productos-grid">
         {productos.map(producto => (
           <div key={producto.id} className="producto-card">
-            <img src={producto.imagen} alt={producto.name} />
+            <Image src={producto.imagen} alt={producto.name} width={200} height={300} />
             <h3>{producto.name}</h3>
             <p>{producto.descripcion}</p>
             <p><strong>Tipo:</strong> {producto.tipo}</p>
