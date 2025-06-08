@@ -80,7 +80,15 @@ export const obtenerProductosRecomendados = async (seccion: string): Promise<any
       ? productosRestantes.sort((a, b) => b.VentasRecientes - a.VentasRecientes)[0] 
       : null;
 
-    return [productoMasVendido, productoMasReciente].filter(p => p !== null);
+    // 🔥 Seleccionar un producto aleatorio dentro de la misma sección, sin repetir los anteriores
+    const productosRestantesAleatorio = productosRestantes.filter(
+      (prod: any) => prod.id !== (productoMasReciente?.id ?? "")
+    );
+    const productoAleatorio = productosRestantesAleatorio.length > 0
+      ? productosRestantesAleatorio[Math.floor(Math.random() * productosRestantesAleatorio.length)]
+      : null;
+
+    return [productoMasVendido, productoMasReciente, productoAleatorio].filter(p => p !== null);
   } catch (err) {
     console.error('Error obteniendo productos recomendados:', err);
     return [];
