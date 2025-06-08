@@ -12,6 +12,8 @@ export const obtenerVectorInicial = (carrito: any[]): Record<string, number> => 
   const conteoSecciones: Record<string, number> = {};
   categoriasValidas.forEach(cat => (conteoSecciones[cat] = 0));
 
+  let soloCombosEspeciales = true;
+
   carrito.forEach(item => {
     const rawSeccion = item.seccion || item.Seccion || "";
     let seccionNormalizada = rawSeccion.trim().replace(/\s+/g, '');
@@ -19,8 +21,14 @@ export const obtenerVectorInicial = (carrito: any[]): Record<string, number> => 
 
     if (seccionNormalizada !== "CombosEspeciales" && categoriasValidas.includes(seccionNormalizada)) {
       conteoSecciones[seccionNormalizada] += item.cantidad ?? 1;
+      soloCombosEspeciales = false; // 🔥 Si se encuentra otro producto, ya no es solo combos
     }
   });
+
+  if (soloCombosEspeciales) {
+    console.log("🔹 Solo se compraron productos de 'CombosEspeciales', desactivando recomendaciones.");
+    return { Bebidas: 0, Dulces: 0, ComidaRapida: 0, Snacks: 0 }; // 🔥 Vector 0 0 0 0
+  }
 
   const totalProductosValidos = categoriasValidas.reduce((sum, cat) => sum + conteoSecciones[cat], 0);
   if (totalProductosValidos === 0) return {};

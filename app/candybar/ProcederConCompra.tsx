@@ -17,14 +17,23 @@ const ProcederConCompra = ({ mostrar, setMostrar, carrito }: { mostrar: boolean,
   useEffect(() => {
     if (mostrar) {
       const vectorInit = obtenerVectorInicial(carrito)
-      const vectorFinalizado = calcularVectorFinal(vectorInit)
       setVectorInicial(vectorInit)
-      setVectorFinal(vectorFinalizado)
-      const mejorSeccion = obtenerSeccionRecomendada(vectorFinalizado)
-      setSeccionRecomendada(mejorSeccion)
 
-      // 🔥 Obtener los productos recomendados
-      obtenerProductosRecomendados(mejorSeccion).then(setProductosRecomendados)
+      // 🔥 Detectar si el vector inicial es 0 0 0 0 (solo "CombosEspeciales")
+      const esSoloCombos = Object.values(vectorInit).every(val => val === 0)
+
+      if (!esSoloCombos) {
+        const vectorFinalizado = calcularVectorFinal(vectorInit)
+        setVectorFinal(vectorFinalizado)
+        const mejorSeccion = obtenerSeccionRecomendada(vectorFinalizado)
+        setSeccionRecomendada(mejorSeccion)
+
+        // 🔥 Obtener los productos recomendados
+        obtenerProductosRecomendados(mejorSeccion).then(setProductosRecomendados)
+      } else {
+        console.log("🔹 Solo se compraron productos de 'CombosEspeciales', no se mostrarán recomendaciones.")
+        setProductosRecomendados([]) // 🔥 Vaciar recomendaciones
+      }
     }
   }, [mostrar, carrito])
 
@@ -76,18 +85,22 @@ const ProcederConCompra = ({ mostrar, setMostrar, carrito }: { mostrar: boolean,
 
   return (
     <div style={{ textAlign: 'center' }}>
-      {/* 🔥 Sección de recomendaciones */}
-      <h3 style={{ textAlign: 'center', marginBottom: '10px' }}>¡Te recomendamos estos productos adicionales!</h3>
-      <div style={{ display: 'flex', justifyContent: 'center', gap: '20px' }}>
-        {productosRecomendados.map((prod) => (
-          <div key={prod.id} style={{ textAlign: 'center' }}>
-            <img src={prod.imagen} alt={prod.Nombre} width={80} height={80} style={{ borderRadius: '5px' }} />
-            <p><strong>{prod.Nombre}</strong></p>
-            <p>Bs {parseFloat(prod.Precio.replace(' Bs', ''))}</p>
-            <button onClick={() => agregarProductoAdicional(prod)}>Añadir</button>
+      {/* 🔥 Sección de recomendaciones → Solo se muestra si hay productos recomendados */}
+      {productosRecomendados.length > 0 && (
+        <>
+          <h3 style={{ textAlign: 'center', marginBottom: '10px' }}>¡Te recomendamos estos productos adicionales!</h3>
+          <div style={{ display: 'flex', justifyContent: 'center', gap: '20px' }}>
+            {productosRecomendados.map((prod) => (
+              <div key={prod.id} style={{ textAlign: 'center' }}>
+                <img src={prod.imagen} alt={prod.Nombre} width={80} height={80} style={{ borderRadius: '5px' }} />
+                <p><strong>{prod.Nombre}</strong></p>
+                <p>Bs {parseFloat(prod.Precio.replace(' Bs', ''))}</p>
+                <button onClick={() => agregarProductoAdicional(prod)}>Añadir</button>
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
+        </>
+      )}
 
       {/* 🔥 Sección de resumen */}
       <Resumen carrito={carrito} />
