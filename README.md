@@ -1,5 +1,5 @@
 # Proyecto Final - Ingeniería de Sistemas  
-## Análisis y Diseño de un Sistema de Información para la Automatización de Procesos en la Cinemateca Boliviana  
+## DESARROLLO DE UN SISTEMA INTELIGENTE PARA LA CINEMATECA BOLIVIANA CON FUNCIONALIDADES DE STREAMING, RECOMENDACIONES PERSONALIZADAS, PREDICCIÓN DE CONSUMO Y ATENCIÓN AUTOMATIZADA
 
 ---
 
@@ -21,7 +21,7 @@
 
 ## Objetivo General
 
-Desarrollar una **plataforma de streaming web** para la Cinemateca Boliviana que permita la **difusión, reproducción y gestión en línea de películas bolivianas**, brindando acceso a usuarios de todo el país y promoviendo el **patrimonio audiovisual nacional**.
+Desarrollar e implementar un sistema inteligente e integral para la Cinemateca Boliviana que combine una plataforma de streaming, un motor de recomendaciones personalizadas, un modelo predictivo para productos del Candy Bar, un chatbot de atención al usuario y un módulo administrativo, con el fin de modernizar su infraestructura tecnológica, optimizar la experiencia del usuario y fortalecer su rol cultural en el entorno digital.
 
 ---
 
@@ -40,9 +40,9 @@ Desarrollar una **plataforma de streaming web** para la Cinemateca Boliviana que
 
 - [x] Historias de usuario definidas  
 - [x] Prototipo en Figma  
-- [ ] Componentes atómicos y moleculares en desarrollo  
-- [ ] Integración con API  
-- [ ] Pruebas de interfaz y funcionalidad  
+- [x] Componentes atómicos y moleculares en desarrollo  
+- [x] Integración con API  
+- [x] Pruebas de interfaz y funcionalidad  
 
 ---
 
