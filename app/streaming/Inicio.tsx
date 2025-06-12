@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import MovieCard from '../components/MovieCard';
+import Top from '../components/carruseles/Top';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -99,7 +100,16 @@ const InicioPage = () => {
         </div>
       )}
 
+      <div className="txt-car">
+        <h3 className="titulo">TOP</h3>
+      </div>
+      <Top />
+      <br />
+      <br />
+
+
       {/* Lista de películas */}
+
       <div className="CardMovie">
         {inicio.map((item) => (
           <MovieCard
