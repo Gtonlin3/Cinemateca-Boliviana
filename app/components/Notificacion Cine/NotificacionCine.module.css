@@ -182,3 +182,48 @@
   right: 20px; 
   z-index: 1000; 
 }
+
+
+
+.contenedorNotificacionFixed {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+  max-width: 90vw;
+}
+
+@media (max-width: 640px) {
+  .contenedorNotificacionFixed {
+    top: 10px;
+    right: 10px;
+    left: 10px;
+    width: auto;
+    max-width: unset;
+  }
+
+  .cajaNotificacion {
+    max-width: 100%;
+    border-radius: 1rem;
+  }
+
+  .cuerpo {
+    padding: 1rem;
+  }
+
+  .tituloPrincipal {
+    font-size: 1rem;
+  }
+
+  .descripcion {
+    font-size: 0.875rem;
+  }
+
+  .textoUrgente {
+    font-size: 0.75rem;
+  }
+
+  .iconoPalomitas {
+    font-size: 1.25rem;
+  }
+}
